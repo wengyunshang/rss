@@ -1,0 +1,135 @@
+//
+//  ClassData.m
+//  bingyuhuozhige
+//
+//  Created by weng xiangxun on 14-6-20.
+//  Copyright (c) 2014年 Baidu. All rights reserved.
+//
+
+#import "UserData.h"
+#import "SVHTTPRequest.h"
+@implementation UserData
+
+
+static UserData *_sharedUserData = nil;
+/**
+ 数据库采用单例模式: 不必每个地方去管理
+ */
++ (UserData *)sharedUserData{
+    if (!_sharedUserData) {
+        _sharedUserData = [[self alloc]init];
+    }
+    return _sharedUserData;
+}
+
+
+-(void)dealloc{
+    
+    if (_uavatar) {
+     [_uavatar release];
+    }
+    if (_ubirthday) {
+    [_ubirthday release];
+    }
+    if (_uemail) {
+    [_uemail release];
+    }
+    if (_ugender) {
+    [_ugender release];
+    }
+    if (_umobile) {
+    [_umobile release];
+    }
+    if (_unickname) {
+    [_unickname release];
+    }
+    if (_utraveller_id) {
+    [_utraveller_id release];
+    }
+    if (_uwechat) {
+    [_utoken release];
+    }
+    if (_uwechat) {
+    [_uwechat release];
+    }
+    if (_uweibo) {
+    [_uweibo release];
+    }
+    [super dealloc];
+}
+
+
+
++ (id)initWithDictionary:(NSDictionary*)dic{
+    UserData *dbbdata = [[[UserData alloc] initWithDictionary:dic] autorelease];
+    return dbbdata;
+}
+
+- (id)initWithDictionary:(NSDictionary*)dic
+{
+    self = [super init];
+    if (self) {
+        self.uavatar       = [dic objectForKey:avatar];
+//        self.ubirthday     = [dic objectForKey:birthday];
+        self.uemail     = [dic objectForKey:email];
+        self.utraveller_id         = [dic objectForKey:traveller_id];
+
+ 
+        NSString *sex = [dic objectForKey:udgender];
+        if (sex) {
+            if ([sex length]<=0) {
+                self.ugender = @"男";
+            }else{
+                self.ugender     = sex;
+            }
+        }else{
+            self.ugender = @"男";
+        }
+
+        self.umobile     = [dic objectForKey:mobile];
+        self.unickname     = [dic objectForKey:udnickname];
+        self.utoken     = [dic objectForKey:ttoken];
+//        self.uwechat     = [dic objectForKey:wechat];
+//        self.uweibo     = [dic objectForKey:weibo];
+        //
+        [[NSUserDefaults standardUserDefaults] setObject:self.utraveller_id forKey:traveller_id];
+    }
+    return self;
+}
+
+-(void)logout{
+    self.utoken = @"";
+}
+
+-(BOOL)isLogin{
+    if ([self.utoken length]>0) {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(void)login{
+    UserData *udata  = [[PenSoundDao sharedPenSoundDao]selectUser];
+    
+    self.uavatar       = udata.uavatar;
+    
+    self.uemail     = udata.uemail;
+    self.utraveller_id = udata.utraveller_id;
+    self.ugender     = udata.ugender;
+    self.umobile     = udata.umobile;
+    self.unickname     = udata.unickname;
+    self.utoken     = udata.utoken;
+}
+
+-(void)updateSelf{
+
+    [[PenSoundDao sharedPenSoundDao] updateUser:self];
+}
+
+//保存本实体到本地
+-(void)saveSelfToDB{
+    
+    [[PenSoundDao sharedPenSoundDao]saveUser:self];
+}
+@end

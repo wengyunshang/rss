@@ -1,0 +1,20 @@
+//
+//  PenSoundDao.h
+//  LearningMachine0.1
+//
+//  Created by Jenson on 11-2-28.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "BaseDao.h"
+
+@class UserData;
+@interface PenSoundDao : BaseDao {
+    
+}
++ (PenSoundDao *)sharedPenSoundDao;
+-(void)saveUser:(UserData*)dbbData;
+-(void)updateUser:(UserData*)dbbData;
+-(UserData*)selectUser;
+@end

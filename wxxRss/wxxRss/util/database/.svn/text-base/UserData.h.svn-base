@@ -1,0 +1,47 @@
+//
+//  ClassData.h
+//  bingyuhuozhige
+//
+//  Created by weng xiangxun on 14-6-20.
+//  Copyright (c) 2014年 Baidu. All rights reserved.
+//
+/**{"status": 1, 
+ "result": {"weibo": "xxoo", 
+ "traveller_id": "54865dab6909ad688ed14118",
+ "_session_id": "90f83fd10c39c23591b087b2f5411f78",
+ "mobile": "18665075453",
+ "gender": "",
+ "token": "zouzhe1419990223", 
+ "wechat": "", 
+ "avatar": "", 
+ "nickname": "18665075453", 
+ "email": ""}}*/
+#import "WxxBaseData.h"
+#import <Foundation/Foundation.h>
+#define udnickname @"nickname"
+#define traveller_id @"traveller_id"
+#define email @"email"
+#define mobile @"mobile"
+#define udgender @"gender"
+#define wechat @"wechat"
+#define weibo @"weibo"
+#define avatar @"avatar"
+#define ttoken @"token"  //这里和json里面冲突，所以多加一个t
+#define udbirthday @"birthday"
+@interface UserData : WxxBaseData
+
++ (UserData *)sharedUserData;
+@property (nonatomic,strong)NSString *utraveller_id;
+@property (nonatomic,strong)NSString *unickname;
+@property (nonatomic,strong)NSString *uemail;
+@property (nonatomic,strong)NSString *umobile;
+@property (nonatomic,strong)NSString *ugender;
+@property (nonatomic,strong)NSString *uwechat;
+@property (nonatomic,strong)NSString *uweibo;
+@property (nonatomic,strong)NSString *uavatar;
+@property (nonatomic,strong)NSString *utoken;
+@property (nonatomic,strong)NSString *ubirthday;
+-(BOOL)isLogin;
+-(void)logout;
+-(void)login;
+@end

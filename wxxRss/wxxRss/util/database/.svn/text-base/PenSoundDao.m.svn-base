@@ -1,0 +1,103 @@
+
+//  PenSoundDao.m
+//  LearningMachine0.1
+//
+//  Created by Jenson on 11-2-28.
+//  Copyright 2011 __MyCompanyName__. All rights reserved. 
+#import "PenSoundDao.h" 
+#import "FMResultSet.h"
+#import "FMDatabase.h"
+
+#define USER @"user"
+@implementation PenSoundDao
+static PenSoundDao *_sharedPenSoundDao = nil; 
+/**
+ 数据库采用单例模式: 不必每个地方去管理
+ */
++ (PenSoundDao *)sharedPenSoundDao{
+    if (!_sharedPenSoundDao) {
+        _sharedPenSoundDao = [[self alloc] init];
+        
+    }
+    return _sharedPenSoundDao;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+    }
+    return self;
+}
+
+//-(void)updateUser:(UserData*)dbbData{
+//    
+//    [super getDOCDatabase:DBNAME];
+////    UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
+//    NSString *sql = [NSString stringWithFormat:@"update %@ set avatar = '%@',nickname = '%@' where traveller_id = '%@'",USER,
+//                     dbbData.uavatar,dbbData.unickname,dbbData.utraveller_id];
+//    NSLog(@"%@",sql);
+//    [db executeUpdate:sql];
+//    if ([db hadError]) {
+//        NSLog(@"添加错误 请到这里(isnertNewCategory:)断点测试");
+//    }
+//    [super closeDatabase];
+//}
+//
+//-(void)saveUser:(UserData*)dbbData{
+//    
+//    [super getDOCDatabase:DBNAME];
+//    
+//    NSString *sql = [NSString stringWithFormat:@"INSERT INTO  %@ (traveller_id,avatar,birthday,email,gender,mobile,nickname,token,wechat,weibo) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",USER,
+//                     dbbData.utraveller_id,dbbData.uavatar,dbbData.ubirthday,dbbData.uemail,dbbData.ugender,dbbData.umobile,dbbData.unickname,dbbData.utoken,
+//                     dbbData.uwechat,dbbData.uweibo];
+//    NSLog(@"%@",sql);
+//    [db executeUpdate:sql];
+//    if ([db hadError]) {
+//        NSLog(@"添加错误 请到这里(isnertNewCategory:)断点测试");
+//    }
+//    [super closeDatabase];
+//}
+//
+//
+//
+////#define nickname @"nickname"
+////#define traveller_id @"traveller_id"
+////#define email @"email"
+////#define mobile @"mobile"
+////#define gender @"gender"
+////#define wechat @"wechat"
+////#define weibo @"weibo"
+////#define avatar @"avatar"
+////#define ttoken @"token"  //这里和json里面冲突，所以多加一个t
+////#define birthday @"birthday"
+//-(UserData*)selectUser{
+////    NSString *accesstocken = [[NSUserDefaults standardUserDefaults] objectForKey:qqaccesstocken];
+////    [[NSUserDefaults standardUserDefaults] setObject:str forKey:qqaccesstocken];
+//    NSString *traveller_idarg = [[NSUserDefaults standardUserDefaults] objectForKey:traveller_id];
+//    
+//    [super getDOCDatabase:DBNAME];
+//    // 获取表种 bottle_id过滤，且时间为最新的一条数据,   查询我发送的和捞到的瓶子的最新一条记录
+//    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM %@ where traveller_id = '%@'",USER,traveller_idarg];//连表查询
+//    
+//    NSLog(@"sql:%@",sql);
+//    FMResultSet *rs = [db executeQuery:sql];
+//    
+//    UserData *dbData = [[[UserData alloc]init] autorelease];
+//    while ([rs next]) {
+//        
+//        dbData.uavatar      = [rs stringForColumn:avatar];
+//        dbData.unickname     = [rs stringForColumn:nickname];
+//        dbData.utraveller_id    = [rs stringForColumn:traveller_id];
+//        dbData.uemail     = [rs stringForColumn:email];
+//        dbData.umobile     = [rs stringForColumn:mobile];
+//        dbData.ugender     = [rs stringForColumn:gender];
+//        dbData.utoken     = [rs stringForColumn:ttoken];
+//    }
+//    [super closeDatabase];
+//    return dbData;
+//}
+
+
+@end
+
