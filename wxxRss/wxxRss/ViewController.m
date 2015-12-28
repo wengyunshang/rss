@@ -269,7 +269,7 @@
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.rssClassArr.count;
+    return self.rssClassArr.count+1;
 }
 
 //定义展示的Section的个数
@@ -288,7 +288,7 @@
     //最后一个是加号
     if (indexPath.row==self.rssClassArr.count) {
         [cell setAddbtn];
-        //        [self doQueueLoadRss];
+        //         [self doQueueLoadRss];
     }else{
         RssClassData *rsdata = [self.rssClassArr objectAtIndex:indexPath.row];
         [cell setInfo:rsdata];
@@ -382,7 +382,7 @@
         [self.doCell refreshTipNumV];
         [self.doCell refreshImageV];
     }
-    [self loadAdmob];
+//    [self loadAdmob];
 //    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 //    [self loadInfo];
 }

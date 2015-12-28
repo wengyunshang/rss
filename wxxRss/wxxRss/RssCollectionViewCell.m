@@ -144,7 +144,7 @@
         return;//添加按钮不显示
     }
     if (!self.closeBtn) {
-        self.closeBtn = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-CGRectGetHeight(self.title.frame))];
+        self.closeBtn = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
 //        [self.closeBtn setImage:[UIImage imageNamed:@"icon-times-circle"] forState:UIControlStateNormal];
         UIImage *image = [UIImage imageNamed:@"icon-times-circle"];
         UIImageView *img = [[UIImageView alloc]initWithFrame:CGRectMake((self.closeBtn.frame.size.width-image.size.width)/2, (self.closeBtn.frame.size.height-image.size.height)/2, image.size.width, image.size.height)];
