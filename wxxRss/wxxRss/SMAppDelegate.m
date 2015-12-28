@@ -24,13 +24,11 @@
 #import "WxxNetTBXMLUtil.h"
 #import "TBXML+HTTP.h"
 #import <ShareSDK/ShareSDK.h>
-#import "WeiboApi.h"
 //以下是腾讯QQ和QQ空间
-#import <TencentOpenAPI/QQApi.h>
-#import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h>
-#import "WXApi.h"
-#import <QZoneConnection/ISSQZoneApp.h>
+//#import <TencentOpenAPI/QQApiInterface.h>
+//#import <TencentOpenAPI/QQApiInterface.h>
+//#import <TencentOpenAPI/TencentOAuth.h> 
+//#import <QZoneConnection/ISSQZoneApp.h>
 @implementation SMAppDelegate
 //{
 //    SMViewController *_smViewController;
@@ -76,10 +74,10 @@
 //    [ShareSDK connectQQWithQZoneAppKey:@"1104691508"
 //                         qqApiInterfaceCls:[QQApiInterface class]
 //                           tencentOAuthCls:[TencentOAuth class]];
-    [ShareSDK connectQZoneWithAppKey:qqKey
-                           appSecret:qqSecret
-                   qqApiInterfaceCls:[QQApiInterface class]
-                     tencentOAuthCls:[TencentOAuth class]];
+//    [ShareSDK connectQZoneWithAppKey:qqKey
+//                           appSecret:qqSecret
+//                   qqApiInterfaceCls:[QQApiInterface class]
+//                     tencentOAuthCls:[TencentOAuth class]];
 //    [ShareSDK connectQQWithQZoneAppKey:qqKey
 //                     qqApiInterfaceCls:[QQApiInterface class]
 //                       tencentOAuthCls:[TencentOAuth class]];
@@ -226,9 +224,9 @@
 {
     return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:nil];
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
-    // Required
-//    [APService handleRemoteNotification:userInfo];
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    
+//    // Required
+////    [APService handleRemoteNotification:userInfo];
+//}
 @end
