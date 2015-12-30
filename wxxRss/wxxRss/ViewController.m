@@ -29,24 +29,24 @@
 {
     self = [super init];
     if (self) {
-        /*
-         * 创建Banner广告View
-         * "appkey" 指在 http://e.qq.com/dev/ 能看到的app唯一字符串
-         * "placementId" 指在 http://e.qq.com/dev/ 生成的数字串，广告位id
-         *
-         * banner条广告，广点通提供如下3中尺寸供开发者使用
-         * 320*50 适用于iPhone
-         * 468*60、728*90适用于iPad
-         * banner条的宽度开发者可以进行手动设置，用以满足开发场景需求或是适配最新版本的iphone
-         * banner条的高度广点通侧强烈建议开发者采用推荐的高度，否则显示效果会有影响
-         *
-         * 这里以320*50为例
-         */
-        _bannerView = [[GDTMobBannerView alloc] initWithFrame:CGRectMake(0, 100,
-                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.width,
-                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.height)
-                                                       appkey:@"100720253"
-                                                  placementId:@"9079537207574943610"];
+//        /*
+//         * 创建Banner广告View
+//         * "appkey" 指在 http://e.qq.com/dev/ 能看到的app唯一字符串
+//         * "placementId" 指在 http://e.qq.com/dev/ 生成的数字串，广告位id
+//         *
+//         * banner条广告，广点通提供如下3中尺寸供开发者使用
+//         * 320*50 适用于iPhone
+//         * 468*60、728*90适用于iPad
+//         * banner条的宽度开发者可以进行手动设置，用以满足开发场景需求或是适配最新版本的iphone
+//         * banner条的高度广点通侧强烈建议开发者采用推荐的高度，否则显示效果会有影响
+//         *
+//         * 这里以320*50为例
+//         */
+//        _bannerView = [[GDTMobBannerView alloc] initWithFrame:CGRectMake(0, 100,
+//                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.width,
+//                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.height)
+//                                                       appkey:@"100720253"
+//                                                  placementId:@"9079537207574943610"];
   
     }
     return self;
@@ -55,7 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"唬啊";
+    self.navigationItem.title = @"新闻";
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setBarTintColor:WXXCOLOR(255, 255, 255, 1)];
     self.navigationController.navigationBar.translucent = NO;
@@ -186,20 +186,39 @@
             __block RssCollectionViewCell * cell = (RssCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
             //        __block ViewController *blockself = self;
             [cell startLoading];
-            //开始网络请求
-            [[WxxNetTBXMLUtil shared]loadURL:rssCLassData callback:^(id response) {
-                //返回主线程停止loading
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [cell stoptLoading];
-                    [cell refreshImageV];
-                    //                [blockself loadInfo];
-                });
-                
-                if ([response isEqualToString:WXXSUCCESS]) {
+            
+            if ([rssCLassData.rrcynapi intValue]==1) {
+                [WXXNETUTIL getNewForClassId:rssCLassData callback:^(id response) {
                     
-                }else{
-                }
-            }];
+                    //返回主线程停止loading
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [cell stoptLoading];
+                        [cell refreshImageV];
+                        //                [blockself loadInfo];
+                    });
+                    //            if ([response isEqualToString:WXXSUCCESS]) {
+                    //回到主线程渲染数据
+//                    [self performSelectorOnMainThread:@selector(reloadInfo) withObject:nil waitUntilDone:NO];
+                    //            }else{
+                    //            }
+                }];
+            }else{
+                //开始网络请求
+                [[WxxNetTBXMLUtil shared]loadURL:rssCLassData callback:^(id response) {
+                    //返回主线程停止loading
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [cell stoptLoading];
+                        [cell refreshImageV];
+                        //                [blockself loadInfo];
+                    });
+                    
+                    if ([response isEqualToString:WXXSUCCESS]) {
+                        
+                    }else{
+                    }
+                }];
+            }
+            
         }
     }
     
@@ -222,7 +241,7 @@
                                                  font:18];
     titlLb.textAlignment = NSTextAlignmentCenter;
     titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    titlLb.text = @"唬啊";
+    titlLb.text = @"新闻阅读";
 //
     [titlV addSubview:titlLb];
     
@@ -317,7 +336,7 @@
     //最后一个是加号
     if (indexPath.row==self.rssClassArr.count) {
         [cell setAddbtn];
-        //         [self doQueueLoadRss];
+        [self doQueueLoadRss];
     }else{
         RssClassData *rsdata = [self.rssClassArr objectAtIndex:indexPath.row];
         [cell setInfo:rsdata];
@@ -412,7 +431,7 @@
         [self.doCell refreshImageV];
     }
 //    [self loadAdmob];
-    [self loadGdtMob];
+//    [self loadGdtMob];
 //    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
 //    [self loadInfo];
 }
@@ -446,14 +465,14 @@
 -(void)loadGdtMob{
     
     
-    _bannerView.delegate = self; // 设置Delegate
-    _bannerView.currentViewController = self; //设置当前的ViewController
-    _bannerView.interval = 30; //【可选】设置刷新频率;默认30秒
-    _bannerView.isGpsOn = NO; //【可选】开启GPS定位;默认关闭
-    _bannerView.showCloseBtn = YES; //【可选】展示关闭按钮;默认显示
-    _bannerView.isAnimationOn = YES; //【可选】开启banner轮播和展现时的动画效果;默认开启
-    [self.view addSubview:_bannerView]; //添加到当前的view中
-    [_bannerView loadAdAndShow]; //加载广告并展示
+//    _bannerView.delegate = self; // 设置Delegate
+//    _bannerView.currentViewController = self; //设置当前的ViewController
+//    _bannerView.interval = 30; //【可选】设置刷新频率;默认30秒
+//    _bannerView.isGpsOn = NO; //【可选】开启GPS定位;默认关闭
+//    _bannerView.showCloseBtn = YES; //【可选】展示关闭按钮;默认显示
+//    _bannerView.isAnimationOn = YES; //【可选】开启banner轮播和展现时的动画效果;默认开启
+//    [self.view addSubview:_bannerView]; //添加到当前的view中
+//    [_bannerView loadAdAndShow]; //加载广告并展示
     
 //    _bannerView.translatesAutoresizingMaskIntoConstraints = NO;
 //    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bannerView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bannerView)]];

@@ -183,6 +183,12 @@
 
 -(void)setInfo:(RssClassData*)rssClassData{
     self.rsClassData = rssClassData;
+    
+//    [WXXNETUTIL getNewForClassId:self.rsClassData callback:^(id response) {
+//        NSLog(@"加载完成");
+//        [self performSelectorOnMainThread:@selector(refreshImageV) withObject:nil waitUntilDone:NO];
+//    }];
+    
     self.addBtn.hidden = YES;
     if ([self.rsClassData.rrcImage length]>0) {
         self.imgV.alpha = 1;

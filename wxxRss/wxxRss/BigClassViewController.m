@@ -35,7 +35,7 @@
     self.navigationItem.leftBarButtonItem = [self createRightbarbtn:@"contenttoolbar_hd_close" action:@selector(close)];
     
 //    [self initTitleBar];
-    self.rssClassArr = [[PenSoundDao sharedPenSoundDao]selectBigClassList];
+//    self.rssClassArr = [[PenSoundDao sharedPenSoundDao]selectBigClassList];
     [self initCollectionView];
     
     

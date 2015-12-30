@@ -36,9 +36,9 @@
 //是否需要刷新
 -(BOOL)ynNeedRefresh{
     //如果是自己api的新闻
-    if ([self.rrcynapi intValue]==1) {
-        return NO;
-    }
+//    if ([self.rrcynapi intValue]==1) {
+//        return NO;
+//    }
     //大于一小时就刷新
     return [WxxTimeUtil beforeOneHoursForTimeintercal:self.rrctime];
 }

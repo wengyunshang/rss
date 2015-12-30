@@ -25,10 +25,10 @@
 #import "TBXML+HTTP.h"
 #import <ShareSDK/ShareSDK.h>
 //以下是腾讯QQ和QQ空间
-//#import <TencentOpenAPI/QQApiInterface.h>
-//#import <TencentOpenAPI/QQApiInterface.h>
-//#import <TencentOpenAPI/TencentOAuth.h> 
-//#import <QZoneConnection/ISSQZoneApp.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h> 
+#import <QZoneConnection/ISSQZoneApp.h>
 @implementation SMAppDelegate
 //{
 //    SMViewController *_smViewController;
@@ -64,7 +64,7 @@
     //添加新浪微博应用
     [ShareSDK connectSinaWeiboWithAppKey:@"3182153118"
                                appSecret:@"ad81692e78165c8afedfb41736fd9ccc"
-                             redirectUri:@"http://www.sharesdk.cn"];
+                             redirectUri:@"http://www.weibo.com"];
     
     //添加腾讯微博应用
 //    [ShareSDK connectTencentWeiboWithAppKey:@"1104691508"
@@ -74,13 +74,13 @@
 //    [ShareSDK connectQQWithQZoneAppKey:@"1104691508"
 //                         qqApiInterfaceCls:[QQApiInterface class]
 //                           tencentOAuthCls:[TencentOAuth class]];
-//    [ShareSDK connectQZoneWithAppKey:qqKey
-//                           appSecret:qqSecret
-//                   qqApiInterfaceCls:[QQApiInterface class]
-//                     tencentOAuthCls:[TencentOAuth class]];
-//    [ShareSDK connectQQWithQZoneAppKey:qqKey
-//                     qqApiInterfaceCls:[QQApiInterface class]
-//                       tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQZoneWithAppKey:qqKey
+                           appSecret:qqSecret
+                   qqApiInterfaceCls:[QQApiInterface class]
+                     tencentOAuthCls:[TencentOAuth class]];
+    [ShareSDK connectQQWithQZoneAppKey:qqKey
+                     qqApiInterfaceCls:[QQApiInterface class]
+                       tencentOAuthCls:[TencentOAuth class]];
 //    //        [ShareSDK connectWeChatWithAppId:@"wx0e7d7ea2e49f70c3" wechatCls:[WXApi class]];
 //    id<ISSQZoneApp> app =(id<ISSQZoneApp>)[ShareSDK getClientWithType:ShareTypeQQSpace];
 //    [app setIsAllowWebAuthorize:YES];
