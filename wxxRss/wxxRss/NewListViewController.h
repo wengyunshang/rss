@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GDTNativeAd.h"
-@interface NewListViewController : UIViewController<GDTNativeAdDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface NewListViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic,assign)BOOL ynCollect;//是否加载收藏列表
 @property (strong, nonatomic)UICollectionView *collectionView;
 @property (nonatomic,strong)RssClassData *rssClassData;

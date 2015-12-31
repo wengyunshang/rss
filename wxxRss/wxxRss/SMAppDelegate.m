@@ -12,24 +12,25 @@
 
 @end
 
-
+@import GoogleMobileAds;
 #import "MobClick.h"
 #import "ViewController.h"
-#import "LeftHbgView.h"
-//#import "APService.h"
-#import "NewListViewController.h"
-//#import "SMFeedParserWrapper.h"
-#import "WxxWebViewController.h"
-#import "TBXML.h"
-#import "WxxNetTBXMLUtil.h"
-#import "TBXML+HTTP.h"
-#import <ShareSDK/ShareSDK.h>
+#import "LeftHbgView.h" //左边栏
+#import "NewListViewController.h" //收藏列表
+#import "WxxWebViewController.h"  //网页
+#import <ShareSDK/ShareSDK.h> //分享sdk
 //以下是腾讯QQ和QQ空间
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h> 
 #import <QZoneConnection/ISSQZoneApp.h>
+
+@interface SMAppDelegate()<GADInterstitialDelegate>
+@property(nonatomic, strong) GADInterstitial *interstitial;
+@end
+
 @implementation SMAppDelegate
+@synthesize splash = _splash;
 //{
 //    SMViewController *_smViewController;
 //}
@@ -66,14 +67,6 @@
                                appSecret:@"ad81692e78165c8afedfb41736fd9ccc"
                              redirectUri:@"http://www.weibo.com"];
     
-    //添加腾讯微博应用
-//    [ShareSDK connectTencentWeiboWithAppKey:@"1104691508"
-//                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-//                                redirectUri:@"http://www.sharesdk.cn"
-//                                   wbApiCls:[WeiboApi class]];
-//    [ShareSDK connectQQWithQZoneAppKey:@"1104691508"
-//                         qqApiInterfaceCls:[QQApiInterface class]
-//                           tencentOAuthCls:[TencentOAuth class]];
     [ShareSDK connectQZoneWithAppKey:qqKey
                            appSecret:qqSecret
                    qqApiInterfaceCls:[QQApiInterface class]
@@ -81,12 +74,6 @@
     [ShareSDK connectQQWithQZoneAppKey:qqKey
                      qqApiInterfaceCls:[QQApiInterface class]
                        tencentOAuthCls:[TencentOAuth class]];
-//    //        [ShareSDK connectWeChatWithAppId:@"wx0e7d7ea2e49f70c3" wechatCls:[WXApi class]];
-//    id<ISSQZoneApp> app =(id<ISSQZoneApp>)[ShareSDK getClientWithType:ShareTypeQQSpace];
-//    [app setIsAllowWebAuthorize:YES];
-//    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
-//                           appSecret:@"64020361b8ec4c99936c0e3999a9f249"
-//                           wechatCls:[WXApi class]];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -115,7 +102,56 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSetType:) name:@"showSetType" object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIndexList) name:@"updateIndexList" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showweburl:) name:@"showweburl" object:nil];
+    
+    //开屏广告初始化并展示代码
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+////        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1101508191" placementId:@"1020003690642397"];
+//        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1105052784" placementId:@"9040109739804145"];
+//        splashAd.delegate = self;//设置代理1ez        //针对不同设备尺寸设置不同的默认图片，拉取广告等待时间会展示该默认图片。
+//        if ([[UIScreen mainScreen] bounds].size.height >= 568.0f) {
+//            splashAd.backgroundColor = [UIColor whiteColor];
+//        } else {
+//            splashAd.backgroundColor = [UIColor whiteColor];
+//        }
+//        //设置开屏拉取时长限制，若超时则不再展示广告
+//        splashAd.fetchDelay = 3;
+//        //拉取并展示
+//        [splashAd loadAdAndShowInWindow:self.window];
+//        self.splash = splashAd;
+//        
+//    }
+    [self createAndLoadInterstitial];
     return YES;
+}
+
+
+- (void)createAndLoadInterstitial {
+    self.interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-5914587552835750/3251372825"];
+    self.interstitial.delegate = self;
+    
+    GADRequest *request = [GADRequest request];
+    // Request test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made. GADInterstitial automatically returns test ads when running on a
+    // simulator.
+//    request.testDevices = @[@"4158af5e5bd6da102df22d01a366a05a"];
+    [self.interstitial loadRequest:request];
+}
+
+
+#pragma mark GADInterstitialDelegate implementation
+
+- (void)interstitial:(GADInterstitial *)interstitial
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitialDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    NSLog(@"interstitialDidDismissScreen");
+}
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)interstitial {
+    [interstitial presentFromRootViewController:self.window.rootViewController];
 }
 
 -(void)updateIndexList{
@@ -229,4 +265,27 @@
 //    // Required
 ////    [APService handleRemoteNotification:userInfo];
 //}
+
+
+-(void)splashAdSuccessPresentScreen:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+
+-(void)splashAdFailToPresent:(GDTSplashAd *)splashAd withError:(NSError *)error
+{
+    NSLog(@"%s%@",__FUNCTION__,error);
+}
+-(void)splashAdApplicationWillEnterBackground:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+-(void)splashAdClicked:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
+-(void)splashAdClosed:(GDTSplashAd *)splashAd
+{
+    NSLog(@"%s",__FUNCTION__);
+}
 @end

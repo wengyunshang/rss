@@ -24,7 +24,6 @@
 
 @implementation ViewController
 
-
 - (id)init
 {
     self = [super init];
@@ -74,7 +73,6 @@
     longPressGr.minimumPressDuration = 1.0;
     [self.collectionView addGestureRecognizer:longPressGr];
     
-    [self loadGdtMob];
 }
 
 -(void)loadView{
@@ -441,126 +439,6 @@
 }
 
 
--(void)loadAdmob{
-    if (!bannerView_) {
-        
-        bannerView_ = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-        bannerView_.frame = CGRectMake(0, 0, UIBounds.size.width, 50);
-        
-        bannerView_.adUnitID = @"ca-app-pub-5914587552835750/9893366820";
-        [self.view addSubview:bannerView_];
-        // Let the runtime know which UIViewController to restore after taking
-        // the user wherever the ad goes and add it to the view hierarchy.
-        bannerView_.rootViewController = self;
-        bannerView_.delegate = self;
-        bannerView_.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bannerView_]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(bannerView_)]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bannerView_]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(bannerView_)]];
-        // Initiate a generic request to load it with an ad.
-        [bannerView_ loadRequest:[GADRequest request]];
-        
-    }
-}
-
--(void)loadGdtMob{
-    
-    
-//    _bannerView.delegate = self; // 设置Delegate
-//    _bannerView.currentViewController = self; //设置当前的ViewController
-//    _bannerView.interval = 30; //【可选】设置刷新频率;默认30秒
-//    _bannerView.isGpsOn = NO; //【可选】开启GPS定位;默认关闭
-//    _bannerView.showCloseBtn = YES; //【可选】展示关闭按钮;默认显示
-//    _bannerView.isAnimationOn = YES; //【可选】开启banner轮播和展现时的动画效果;默认开启
-//    [self.view addSubview:_bannerView]; //添加到当前的view中
-//    [_bannerView loadAdAndShow]; //加载广告并展示
-    
-//    _bannerView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bannerView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bannerView)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_bannerView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_bannerView)]];
-}
-
-//- (void) viewWillDisappear:(BOOL)animated
-//{
-//    NSLog(@"%s",__FUNCTION__);
-//}
-//
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//    NSLog(@"%s",__FUNCTION__);
-//}
-
-- (void)bannerViewMemoryWarning
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-// 请求广告条数据成功后调用
-//
-// 详解:当接收服务器返回的广告数据成功后调用该函数
-- (void)bannerViewDidReceived
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-// 请求广告条数据失败后调用
-//
-// 详解:当接收服务器返回的广告数据失败后调用该函数
-- (void)bannerViewFailToReceived:(NSError *)error
-{
-    NSLog(@"%s, Error:%@",__FUNCTION__,error);
-}
-
-// 应用进入后台时调用
-//
-// 详解:当点击下载或者地图类型广告时，会调用系统程序打开，
-// 应用将被自动切换到后台
-- (void)bannerViewWillLeaveApplication
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-// banner条曝光回调
-//
-// 详解:banner条曝光时回调该方法
-- (void)bannerViewWillExposure
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-// banner条点击回调
-//
-// 详解:banner条被点击时回调该方法
-- (void)bannerViewClicked
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-/**
- *  banner条被用户关闭时调用
- *  详解:当打开showCloseBtn开关时，用户有可能点击关闭按钮从而把广告条关闭
- */
-- (void)bannerViewWillClose
-{
-    NSLog(@"%s",__FUNCTION__);
-}
-
-- (void)adViewDidReceiveAd:(GADBannerView *)view{
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        
-    }completion:^(BOOL finished){
-        
-    }];
-    
-    NSLog(@"广告出来了");
-}
-
-- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error{
-    NSLog(@"广告错误");
-}
 
 
 

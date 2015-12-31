@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GoogleMobileAds/GADBannerView.h"
-#import "GDTMobBannerView.h" //导入GDTMobBannerView.h头文件
-@interface ViewController : UIViewController<GDTMobBannerViewDelegate,GADBannerViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
-
-    GADBannerView *bannerView_;
-//    GDTMobBannerView *_bannerView;//声明一个GDTMobBannerView的实例
+@interface ViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+    
 }
 @property (strong, nonatomic)UICollectionView *collectionView;
 -(void)loadInfo;
