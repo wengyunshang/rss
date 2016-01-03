@@ -83,7 +83,7 @@
     CGFloat paragraphSpacingBefore = 0.0;
     CGFloat firstLineHeadIndent = 0.0;
     CGFloat headIndent = 0.0;
-    CGFloat lineSp = 5.0;
+    CGFloat lineSp = 0.0;
     CTParagraphStyleSetting settings[] =
     {
         {kCTParagraphStyleSpecifierAlignment, sizeof(CTTextAlignment), &alignment},
@@ -106,7 +106,7 @@
                      range:NSMakeRange(0, [_string length])];
 
     CFRelease(style);
-    NSLog(@"%d",[_string length]);
+//    NSLog(@"%d",[_string length]);
     if (nil == _font) {
         _font = [UIFont boldSystemFontOfSize:12.0];
     }
@@ -146,7 +146,7 @@
                                             attributes:@{NSFontAttributeName : self.font}
                                                context:nil].size;
     
-    labelsize.height = labelsize.height + labelsize.height/self.font.xHeight*5;
+    labelsize.height = labelsize.height + labelsize.height/self.font.xHeight*2;
     return labelsize.height;
 }
 

@@ -65,7 +65,7 @@
     [self.contentView addSubview:self.titleLb];
     //        [self.contextLb setText:[NSString stringWithFormat:@"        %@",self.bookdata.bpbcontent]];//
     //        [self.contextLb resetFrame:headV.frame.size.width-30];
-    
+//    self.titleLb.backgroundColor = [UIColor redColor];
     
     
     
@@ -119,7 +119,7 @@
     
     self.timeLb.text = rsdata.rrpublished;
     CGRect rect = self.timeLb.frame;
-    rect.origin.y = CGRectGetMaxY(self.titleLb.frame)+3;
+    rect.origin.y = CGRectGetMaxY(self.titleLb.frame);
     rect.origin.x = CGRectGetMinX(self.titleLb.frame);
     self.timeLb.frame = rect;
     

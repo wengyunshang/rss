@@ -15,6 +15,7 @@
 @import GoogleMobileAds;
 #import "MobClick.h"
 #import "ViewController.h"
+#import "WxxTimeUtil.h"
 #import "LeftHbgView.h" //左边栏
 #import "NewListViewController.h" //收藏列表
 #import "WxxWebViewController.h"  //网页
@@ -22,7 +23,7 @@
 //以下是腾讯QQ和QQ空间
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/QQApiInterface.h>
-#import <TencentOpenAPI/TencentOAuth.h> 
+#import <TencentOpenAPI/TencentOAuth.h>
 #import <QZoneConnection/ISSQZoneApp.h>
 
 @interface SMAppDelegate()<GADInterstitialDelegate>
@@ -48,7 +49,7 @@
         fontNames =[[NSArray alloc]initWithArray:[UIFont fontNamesForFamilyName:[familyNames objectAtIndex:indFamily]]];
         for(indFont=0; indFont<[fontNames count]; ++indFont)
         {
-                        NSLog(@"    Font name: %@",[fontNames objectAtIndex:indFont]);
+            NSLog(@"    Font name: %@",[fontNames objectAtIndex:indFont]);
         }
     }
 }
@@ -78,10 +79,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    [self fonename];
-//    [self umengTrack];
+    //    [self fonename];
+    //    [self umengTrack];
     [self sharesdk];
-
+    
     self.indexVC = [[ViewController alloc]init];
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.linenv = [[UINavigationController alloc] initWithRootViewController:self.indexVC];
@@ -90,7 +91,7 @@
     [self.indexVC.view addSubview:[LeftHbgView sharedLeftHbgView]];
     [self.window addSubview:[WxxLoadView sharedWxxLoadView]];
     [self.window addSubview:[WxxPopView sharedWxxPopView]];
-
+    
     [self.indexVC loadInfo];
     [WXXNETUTIL getBigClass:^(id response) {
         [WXXNETUTIL getLittleClass:^(id response) {
@@ -100,27 +101,23 @@
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSetType:) name:@"showSetType" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIndexList) name:@"updateIndexList" object:nil];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateIndexList) name:@"updateIndexList" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showweburl:) name:@"showweburl" object:nil];
     
     //开屏广告初始化并展示代码
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-////        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1101508191" placementId:@"1020003690642397"];
+//        //        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1101508191" placementId:@"1020003690642397"];
 //        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1105052784" placementId:@"9040109739804145"];
 //        splashAd.delegate = self;//设置代理1ez        //针对不同设备尺寸设置不同的默认图片，拉取广告等待时间会展示该默认图片。
-//        if ([[UIScreen mainScreen] bounds].size.height >= 568.0f) {
-//            splashAd.backgroundColor = [UIColor whiteColor];
-//        } else {
-//            splashAd.backgroundColor = [UIColor whiteColor];
-//        }
+// 
+//        splashAd.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[SMAppDelegate getLaunchImageName]]];
 //        //设置开屏拉取时长限制，若超时则不再展示广告
-//        splashAd.fetchDelay = 3;
+//        splashAd.fetchDelay = 4;
 //        //拉取并展示
 //        [splashAd loadAdAndShowInWindow:self.window];
 //        self.splash = splashAd;
-//        
 //    }
-    [self createAndLoadInterstitial];
+    //    [self createAndLoadInterstitial];
     return YES;
 }
 
@@ -134,7 +131,7 @@
     // Request test ads on devices you specify. Your test device ID is printed to the console when
     // an ad request is made. GADInterstitial automatically returns test ads when running on a
     // simulator.
-//    request.testDevices = @[@"4158af5e5bd6da102df22d01a366a05a"];
+    //    request.testDevices = @[@"4158af5e5bd6da102df22d01a366a05a"];
     [self.interstitial loadRequest:request];
 }
 
@@ -167,7 +164,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     WxxWebViewController *webVC = [[WxxWebViewController alloc]init];
     [webVC initWebWithUrl:temp title:@"原文"];
     [self.indexVC presentViewController:webVC animated:YES completion:^{
-         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     }];
 }
 -(void)showSetType:(NSNotification *) noti
@@ -190,7 +187,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 -(void)showWebView{
     WxxWebViewController *webVC = [[WxxWebViewController alloc]init];
     [webVC initWebWithUrl:@"http://www.huuua.com/index.php?c=comment&a=getCommentList" title:@"关于我们"];
-//    [self.indexVC.navigationController pushViewController:webVC animated:YES];
+    //    [self.indexVC.navigationController pushViewController:webVC animated:YES];
     [self.indexVC presentViewController:webVC animated:YES completion:^{
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     }];
@@ -220,11 +217,29 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    self.oldTime = [WxxTimeUtil getNowTimeInterval]; //进入后台记录时间点
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    NSLog(@"后台返回");
+    NSString *nowTime = [WxxTimeUtil getNowTimeInterval];
+    //后台返回的时候判断现在和上次进入后台的时候时间差， 如果大于一个小时就弹出开屏广告
+//    if (([nowTime longLongValue] - [self.oldTime longLongValue])>3600) {
+//        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+//            //        GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1101508191" placementId:@"1020003690642397"];
+//            GDTSplashAd *splashAd = [[GDTSplashAd alloc] initWithAppkey:@"1105052784" placementId:@"9040109739804145"];
+//            splashAd.delegate = self;//设置代理1ez        //针对不同设备尺寸设置不同的默认图片，拉取广告等待时间会展示该默认图片。
+//            
+//            splashAd.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[SMAppDelegate getLaunchImageName]]];
+//            //设置开屏拉取时长限制，若超时则不再展示广告
+//            splashAd.fetchDelay = 4;
+//            //拉取并展示
+//            [splashAd loadAdAndShowInWindow:self.window];
+//            self.splash = splashAd;
+//        }
+//    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -236,7 +251,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-//    [self saveContext];
+    //    [self saveContext];
 }
 
 #pragma mark - background mode
@@ -249,7 +264,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required
-//    [APService registerDeviceToken:deviceToken];
+    //    [APService registerDeviceToken:deviceToken];
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
@@ -261,7 +276,7 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
     return [ShareSDK handleOpenURL:url sourceApplication:sourceApplication annotation:annotation wxDelegate:nil];
 }
 //- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-//    
+//
 //    // Required
 ////    [APService handleRemoteNotification:userInfo];
 //}
@@ -287,5 +302,135 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
 -(void)splashAdClosed:(GDTSplashAd *)splashAd
 {
     NSLog(@"%s",__FUNCTION__);
+}
+
+
+
++(NSString*)getLaunchImageName
+{
+    NSArray* images= @[@"LaunchImage.png", @"LaunchImage@2x.png",@"LaunchImage-700@2x.png",@"LaunchImage-568h@2x.png",@"LaunchImage-700-568h@2x.png",@"LaunchImage-700-Portrait@2x~ipad.png",@"LaunchImage-Portrait@2x~ipad.png",@"LaunchImage-700-Portrait~ipad.png",@"LaunchImage-Portrait~ipad.png",@"LaunchImage-Landscape@2x~ipad.png",@"LaunchImage-700-Landscape@2x~ipad.png",@"LaunchImage-Landscape~ipad.png",@"LaunchImage-700-Landscape~ipad.png"];
+    
+    
+    
+    UIImage *splashImage;
+    
+    if([self isDeviceiPhone])
+        
+    {
+        
+        if ([self isDeviceiPhone4] && [self isDeviceRetina])
+            
+        {
+            
+            splashImage = [UIImage imageNamed:images[1]];
+            
+            if (splashImage.size.width!=0)
+                
+                return images[1];
+            
+            else
+                
+                return images[2];
+            
+        }
+        
+        else if ([self isDeviceiPhone5])
+            
+        {
+            
+            splashImage = [UIImage imageNamed:images[1]];
+            
+            if (splashImage.size.width!=0)
+                
+                return images[3];
+            
+            else
+                
+                return images[4];
+            
+        }
+        
+        else
+            
+            return images[0]; //Non-retina iPhone
+        
+    }
+    
+    else if ([[UIDevice currentDevice] orientation]==UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown)//iPad Portrait
+        
+    {
+        if ([self isDeviceRetina])
+        {
+            splashImage = [UIImage imageNamed:images[5]];
+            if (splashImage.size.width!=0)
+                return images[5];
+            else
+                return images[6];
+        }
+        else
+        {
+            splashImage = [UIImage imageNamed:images[7]];
+            if (splashImage.size.width!=0)
+                return images[7];
+            else
+                return images[8];
+        }
+        
+    }
+    else
+    {
+        if ([self isDeviceRetina])
+        {
+            splashImage = [UIImage imageNamed:images[9]];
+            if (splashImage.size.width!=0)
+                return images[9];
+            else
+                return images[10];
+        }
+        else
+        {
+            splashImage = [UIImage imageNamed:images[11]];
+            if (splashImage.size.width!=0)
+                return images[11];
+            else
+                return images[12];
+        }
+    }
+}
+
+
++(BOOL)isDeviceiPhone{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        return TRUE;
+    }
+    return FALSE;
+}
+
++(BOOL)isDeviceiPhone4{
+    if ([[UIScreen mainScreen] bounds].size.height==480)
+        return TRUE;
+    return FALSE;
+}
+
+
++(BOOL)isDeviceRetina
+{
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] &&
+        ([UIScreen mainScreen].scale == 2.0))        // Retina display
+    {
+        return TRUE;
+    }
+    else                                          // non-Retina display
+    {
+        return FALSE;
+    }
+}
+
++(BOOL)isDeviceiPhone5{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && [[UIScreen mainScreen] bounds].size.height>480){
+        return TRUE;
+    }
+    return FALSE;
+    
 }
 @end

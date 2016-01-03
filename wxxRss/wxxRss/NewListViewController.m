@@ -300,7 +300,7 @@
                                             options:NSStringDrawingUsesLineFragmentOrigin
                                          attributes:@{NSFontAttributeName : font}
                                             context:nil].size;
-    labelsize.height = labelsize.height + labelsize.height/font.xHeight*5;
+    labelsize.height = labelsize.height + labelsize.height/font.xHeight*2;
     return labelsize.height;
 }
 

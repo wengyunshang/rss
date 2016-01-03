@@ -14,5 +14,5 @@
 @property (nonatomic,strong)UINavigationController *linenv;
 @property (strong, nonatomic) UIWindow *window;
 @property (retain, nonatomic) GDTSplashAd *splash;
-
+@property (retain, nonatomic) NSString *oldTime;
 @end
