@@ -371,9 +371,9 @@ static LeftHbgView *_sharedLeftHbgView = nil;
     POPSpringAnimation *onscreenAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionX];
     onscreenAnimation.toValue = @(orgx);
     onscreenAnimation.springBounciness =0;  //反弹
-    onscreenAnimation.springSpeed = 20;//[0, 20] 速度
-    onscreenAnimation.dynamicsTension = 4000; //动态张力
-    onscreenAnimation.dynamicsFriction = 500;//摩擦
+    onscreenAnimation.springSpeed = 30;//[0, 20] 速度
+    onscreenAnimation.dynamicsTension = 5000; //动态张力
+    onscreenAnimation.dynamicsFriction = 600;//摩擦
     onscreenAnimation.dynamicsMass = 20;//质量
     [onscreenAnimation setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
         

@@ -243,7 +243,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
     [queue inDatabase:^(FMDatabase *wxxdb) {
         [wxxdb open];
         
-        NSString *sql = [NSString stringWithFormat:@"select * from %@ where checkselect = %@",rssclass,WXXYES];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ where checkselect = %@ order by rank",rssclass,WXXYES];
         
         FMResultSet *rs = [wxxdb executeQuery:sql];
         while ([rs next]) {
@@ -259,6 +259,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
             dbData.rrctime = [rs stringForColumn:rctime];
             dbData.rrccheckselect = [rs stringForColumn:rccheckselect];
             dbData.rrcynapi = [rs stringForColumn:rcynapi];
+            dbData.rrcrank = [rs stringForColumn:rcrank];
             [infoArr addObject:dbData];
             
         }
@@ -442,9 +443,10 @@ static PenSoundDao *_sharedPenSoundDao = nil;
     //    UPDATE 表名称 SET 列名称 = 新值 WHERE 列名称 = 某值
     [queue inDatabase:^(FMDatabase *wxxdb) {
         [wxxdb open];
-        NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET image='%@' , time = '%@' WHERE id = %@",rssclass,
+        NSString *sql = [NSString stringWithFormat:@"UPDATE %@ SET image='%@' , time = '%@', rank = '%@' WHERE id = %@",rssclass,
                          rsdata.rrcImage,
                          rsdata.rrctime,
+                         rsdata.rrcrank,
                          rsdata.rrcId];
         
         BOOL res = [wxxdb executeUpdate:sql];
@@ -522,6 +524,25 @@ static PenSoundDao *_sharedPenSoundDao = nil;
     return  maxid;
 }
 
+//查询最大的rank (rank是首页的位置排行)
+-(int)selectMaxRssclassRank{
+    FMDatabaseQueue * queue = [BaseQueueData getSharedInstance];
+    __block int maxid = 0;
+    [queue inDatabase:^(FMDatabase *wxxdb) {
+        [wxxdb open];
+        
+        NSString *sql = [NSString stringWithFormat:@"select max(rank) from %@",rssclass];
+        
+        FMResultSet *rs = [wxxdb executeQuery:sql];
+        while ([rs next]) {
+            
+            maxid = [rs intForColumn:@"max(rank)"];
+        }
+        [wxxdb close];
+    }];
+    
+    return  maxid;
+}
 
 -(void)saveRssClass:(RssClassData*)rsdata{
     if (![self ynhaveRssClass:rsdata.rrcLink]) {
@@ -530,7 +551,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         
         [queue inDatabase:^(FMDatabase *wxxdb) {
             [wxxdb open];
-            NSString *sql = [NSString stringWithFormat:@"INSERT INTO  %@ (id,name,link,image,r,g,b,time,checkselect,bigId,ynapi) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",rssclass,
+            NSString *sql = [NSString stringWithFormat:@"INSERT INTO  %@ (id,name,link,image,r,g,b,time,checkselect,bigId,ynapi,rank) VALUES ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",rssclass,
                              rsdata.rrcId,
                              rsdata.rrcName!=nil?rsdata.rrcName:@"",
                              rsdata.rrcLink!=nil?rsdata.rrcLink:@"",
@@ -541,7 +562,8 @@ static PenSoundDao *_sharedPenSoundDao = nil;
                              @"0",
                              rsdata.rrccheckselect,
                              rsdata.rrcbigId,
-                             rsdata.rrcynapi];
+                             rsdata.rrcynapi,
+                             rsdata.rrcrank];
 
             
             BOOL res = [wxxdb executeUpdate:sql];

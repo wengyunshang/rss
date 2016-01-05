@@ -173,6 +173,9 @@ static WxxNetUTIL *_sharedutil = nil;
                     rbData.rrg = [[dic objectForKey:@"g"] length]>0?[dic objectForKey:@"r"]:@"1";
                     rbData.rrb = [[dic objectForKey:@"b"] length]>0?[dic objectForKey:@"r"]:@"1";
                     rbData.rrcynapi = [dic objectForKey:@"ynapi"];
+                    if ([rbData.rrccheckselect isEqualToString:WXXYES]) { //如果分类是首页上架的为它加个排名 (首页的分类模块位置排名)
+                        rbData.rrcrank = [NSString stringWithFormat:@"%d",([[PenSoundDao sharedPenSoundDao]selectMaxRssclassRank]+1)];//最大排名加1
+                    }
                     [rbData saveSelfToDB];
                 }
                 if (callback) {

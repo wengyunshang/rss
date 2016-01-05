@@ -19,6 +19,7 @@
 #define rccheckselect @"checkselect"
 #define rcbigId @"bigId"
 #define rcynapi @"ynapi"
+#define rcrank @"rank"
 @interface RssClassData : WxxBaseData
 @property (nonatomic,strong)NSString *rrcId;
 @property (nonatomic,strong)NSString *rrcName;
@@ -31,6 +32,7 @@
 @property (nonatomic,strong)NSString *rrccheckselect;
 @property (nonatomic,strong)NSString *rrcbigId;
 @property (nonatomic,strong)NSString *rrcynapi;
+@property (nonatomic,strong)NSString *rrcrank;
 -(void)updateCheck;
 -(BOOL)ynNeedRefresh;
 @end

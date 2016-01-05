@@ -38,11 +38,11 @@
 
 -(void)loadView {
     [super loadView];
-    UISwipeGestureRecognizer *recognizer;
-    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(doBack)];
-    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [[self view]addGestureRecognizer:recognizer];
-    recognizer = nil;
+//    UISwipeGestureRecognizer *recognizer;
+//    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(doBack)];
+//    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+//    [[self view]addGestureRecognizer:recognizer];
+//    recognizer = nil;
     //设置默认样式
     [self setViewBackGroundColor:[[[NSUserDefaults standardUserDefaults] objectForKey:selectTypeKey] intValue]];
     //    [self initWebView];

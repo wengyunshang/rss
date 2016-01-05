@@ -89,15 +89,15 @@
         self.imgV.hidden = YES;
     }
     if ([rsdata.rrynread isEqualToString:WXXYES]) {
-        self.imgV.alpha = 0.4;
-        [self.titleLb setTextColor:WXXCOLOR(0, 0, 0, 0.3)];
-        self.timeLb.textColor = WXXCOLOR(0, 0, 0, 0.3);
-        self.backgroundColor = WXXCOLOR(255, 255, 255, 0.5);
+        self.imgV.alpha = 0.5;
+        [self.titleLb setTextColor:WXXCOLOR(0, 0, 0, 0.5)];
+        self.timeLb.textColor = WXXCOLOR(0, 0, 0, 0.5);
+//        self.backgroundColor = WXXCOLOR(255, 255, 255, 0.6);
     }else{
         self.imgV.alpha = 1;
         [self.titleLb setTextColor:WXXCOLOR(0, 0, 0, 1)];
         self.timeLb.textColor = WXXCOLOR(0, 0, 0, 0.6);
-        self.backgroundColor = WXXCOLOR(255, 255, 255, 1);
+//        self.backgroundColor = WXXCOLOR(255, 255, 255, 1);
     }
     if (self.imgV.hidden) {
         

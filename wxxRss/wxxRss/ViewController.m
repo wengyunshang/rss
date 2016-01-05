@@ -13,9 +13,9 @@
 #import "BigClassViewController.h"
 #import "LeftHbgView.h"
 #import "POPSpringAnimation.h"
+#define margin 6
 
 @interface ViewController ()
-//@property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic,strong)NSMutableArray *rssClassArr;
 @property (nonatomic,assign)BOOL ynChange;//是否编辑模式
 @property (nonatomic,strong)WxxButton *circleBtn;
@@ -28,24 +28,6 @@
 {
     self = [super init];
     if (self) {
-//        /*
-//         * 创建Banner广告View
-//         * "appkey" 指在 http://e.qq.com/dev/ 能看到的app唯一字符串
-//         * "placementId" 指在 http://e.qq.com/dev/ 生成的数字串，广告位id
-//         *
-//         * banner条广告，广点通提供如下3中尺寸供开发者使用
-//         * 320*50 适用于iPhone
-//         * 468*60、728*90适用于iPad
-//         * banner条的宽度开发者可以进行手动设置，用以满足开发场景需求或是适配最新版本的iphone
-//         * banner条的高度广点通侧强烈建议开发者采用推荐的高度，否则显示效果会有影响
-//         *
-//         * 这里以320*50为例
-//         */
-//        _bannerView = [[GDTMobBannerView alloc] initWithFrame:CGRectMake(0, 100,
-//                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.width,
-//                                                                         GDTMOB_AD_SUGGEST_SIZE_320x50.height)
-//                                                       appkey:@"100720253"
-//                                                  placementId:@"9079537207574943610"];
   
     }
     return self;
@@ -70,7 +52,7 @@
     [self loadInfo];
     
     UILongPressGestureRecognizer * longPressGr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressToDo:)];
-    longPressGr.minimumPressDuration = 1.0;
+//    longPressGr.minimumPressDuration = 1.0;
     [self.collectionView addGestureRecognizer:longPressGr];
     
 }
@@ -113,29 +95,157 @@
  */
 -(void)longPressToDo:(UILongPressGestureRecognizer *)gesture
 {
-    if(gesture.state == UIGestureRecognizerStateBegan)
-    {
-        CGPoint point = [gesture locationInView:self.collectionView];
-        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:point];
-        if(indexPath == nil) return ;
-        self.ynChange = YES;
-        NSLog(@"编辑");
-        [self loadInfo];
-        if (!self.circleBtn) {
-            UIImage *image = [UIImage imageNamed:@"CheckCircle-orange"];
-            self.circleBtn = [[WxxButton alloc]initWithFrame:CGRectMake(UIBounds.size.width, self.view.frame.size.height, 200,200)];
-            UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(38, 38, image.size.width, image.size.height)];
-            imgv.image = image;
-            [self.circleBtn addSubview:imgv];
-            self.circleBtn.layer.cornerRadius = 100;
-            self.circleBtn.backgroundColor = WXXCOLOR(0, 0, 0, 0.9);
-            [self.view addSubview:self.circleBtn];
-            [self.circleBtn addTarget:self action:@selector(changeOver) forControlEvents:UIControlEventTouchUpInside];
+    UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *)gesture;
+    UIGestureRecognizerState state = longPress.state;
+    
+    CGPoint location = [longPress locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:location];
+    
+    static UIView       *snapshot = nil;        ///< A snapshot of the row user is moving.
+    static NSIndexPath  *sourceIndexPath = nil; ///< Initial index path, where gesture begins.
+    
+    switch (state) {
+        case UIGestureRecognizerStateBegan: { //长按后获取到手指下面的那个模块
+            if (indexPath) {
+                sourceIndexPath = indexPath;
+                UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+                
+                // Take a snapshot of the selected row using helper method.
+                snapshot = [self customSnapshoFromView:cell];
+                
+                // Add the snapshot as subview, centered at cell's center...
+                __block CGPoint center = cell.center;
+                snapshot.center = center;
+                snapshot.alpha = 0.0;
+                [self.collectionView addSubview:snapshot];
+                [UIView animateWithDuration:0.25 animations:^{
+                    
+                    // Offset for gesture location.
+                    center.y = location.y;
+                    center.x = location.x;
+                    snapshot.center = center;
+                    snapshot.transform = CGAffineTransformMakeScale(1.05, 1.05);
+                    snapshot.alpha = 0.98;
+                    
+                    // Fade out.
+                    cell.alpha = 0.0;
+                } completion:nil];
+            }
+            break;
         }
-        [self showPopToy:self.view.frame.size.height x:self.view.frame.size.width view:self.circleBtn];
-        //add your code here
+            
+        case UIGestureRecognizerStateChanged: {//手指滑动模块跟着滑动
+            CGPoint center = snapshot.center;
+            center.y = location.y;
+            center.x = location.x;
+            snapshot.center = center;
+            
+            // Is destination valid and is it different from source?
+            if (indexPath && ![indexPath isEqual:sourceIndexPath]) { //模块
+                if (indexPath.row<self.rssClassArr.count) {
+                    
+                    // 移动界面
+                    [self.collectionView moveItemAtIndexPath:sourceIndexPath toIndexPath:indexPath];
+                    
+                    //重新排列数据列表和界面保持一致
+                    for (long i=sourceIndexPath.row; i<indexPath.row; i++) {
+                        [self.rssClassArr exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+                    }
+                    
+                    // ... and update source so it is in sync with UI changes.
+                    sourceIndexPath = indexPath;
+                    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
+                    cell.alpha = 0.0;
+                    
+                    
+                }
+                
+            }
+            break;
+        }
+            
+        default: {
+            //手指放开后需要重置位置排名到数据库
+            [self resetRssClassRank];
+            // Clean up.
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
+            [UIView animateWithDuration:0.25 animations:^{
+                
+                snapshot.center = cell.center;
+                snapshot.transform = CGAffineTransformIdentity;
+                snapshot.alpha = 0.0;
+                
+                // Undo the fade-out effect we did.
+                cell.alpha = 1.0;
+                
+            } completion:^(BOOL finished) {
+                
+                [snapshot removeFromSuperview];
+                snapshot = nil;
+                
+            }];
+            sourceIndexPath = nil;
+            break;
+        }
+    }
+//    if(gesture.state == UIGestureRecognizerStateBegan)
+//    {
+//        CGPoint point = [gesture locationInView:self.collectionView];
+//        NSIndexPath * indexPath = [self.collectionView indexPathForItemAtPoint:point];
+//        if(indexPath == nil) return ;
+//        self.ynChange = YES;
+//        NSLog(@"编辑");
+//        [self loadInfo];
+//        if (!self.circleBtn) {
+//            UIImage *image = [UIImage imageNamed:@"CheckCircle-orange"];
+//            self.circleBtn = [[WxxButton alloc]initWithFrame:CGRectMake(UIBounds.size.width, self.view.frame.size.height, 200,200)];
+//            UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(38, 38, image.size.width, image.size.height)];
+//            imgv.image = image;
+//            [self.circleBtn addSubview:imgv];
+//            self.circleBtn.layer.cornerRadius = 100;
+//            self.circleBtn.backgroundColor = WXXCOLOR(0, 0, 0, 0.9);
+//            [self.view addSubview:self.circleBtn];
+//            [self.circleBtn addTarget:self action:@selector(changeOver) forControlEvents:UIControlEventTouchUpInside];
+//        }
+//        [self showPopToy:self.view.frame.size.height x:self.view.frame.size.width view:self.circleBtn];
+//        //add your code here
+//    }
+}
+
+//重置分类模块位置排名
+-(void)resetRssClassRank{
+    NSLog(@"重置排名");
+    for (int i=0; i<self.rssClassArr.count; i++) {
+        RssClassData *classData = [self.rssClassArr objectAtIndex:i];
+        classData.rrcrank = [NSString stringWithFormat:@"%d",(i+1)];
+        [classData updateSelf];
     }
 }
+
+
+
+#pragma mark - Helper methods
+
+/** @brief Returns a customized snapshot of a given view. */
+- (UIView *)customSnapshoFromView:(UIView *)inputView {
+    
+    // Make an image from the input view.
+    UIGraphicsBeginImageContextWithOptions(inputView.bounds.size, NO, 0);
+    [inputView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    // Create an image view.
+    UIView *snapshot = [[UIImageView alloc] initWithImage:image];
+    snapshot.layer.masksToBounds = NO;
+    snapshot.layer.cornerRadius = 0.0;
+    snapshot.layer.shadowOffset = CGSizeMake(-5.0, 0.0);
+    snapshot.layer.shadowRadius = 5.0;
+    snapshot.layer.shadowOpacity = 0.4;
+    
+    return snapshot;
+}
+
 
 /**
  *  编辑结束
@@ -301,7 +411,7 @@
 {
     if(section == 0)
     {
-        CGSize size = {UIBounds.size.width, 4};
+        CGSize size = {UIBounds.size.width, margin};
         return size;
     }
     else
@@ -352,19 +462,19 @@
 
 // 定义上下cell的最小间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 5;
+    return margin;
 }
 
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((UIBounds.size.width-15)/2, (UIBounds.size.width-4)/2-50);
+    return CGSizeMake((UIBounds.size.width-margin*3)/2, (UIBounds.size.width-4)/2-50);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, 5,5, 5);
+    return UIEdgeInsetsMake(0, margin,margin, margin);
 }
 
 #pragma mark --UICollectionViewDelegate

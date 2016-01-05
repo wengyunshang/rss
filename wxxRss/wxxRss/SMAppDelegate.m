@@ -82,6 +82,7 @@
     //    [self fonename];
     //    [self umengTrack];
     [self sharesdk];
+ 
     
     self.indexVC = [[ViewController alloc]init];
     _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

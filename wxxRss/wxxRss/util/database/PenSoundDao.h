@@ -38,4 +38,5 @@
 -(NSString *)selectRssLastTime4ClassId:(NSString*)classId;
 -(NSString *)selectRssLastTime4ClassIdandafterTime:(NSString*)classId rsstime:(NSString *)time;
 -(NSString *)selectTime4Id:(NSString*)classId rsslink:(NSString *)rsslink;
+-(int)selectMaxRssclassRank;
 @end
