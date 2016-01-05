@@ -147,9 +147,23 @@
                     // 移动界面
                     [self.collectionView moveItemAtIndexPath:sourceIndexPath toIndexPath:indexPath];
                     
-                    //重新排列数据列表和界面保持一致
-                    for (long i=sourceIndexPath.row; i<indexPath.row; i++) {
-                        [self.rssClassArr exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+                    
+                    /**
+                     *重新排列数据列表和界面保持一致
+                     *倒序和顺序替换算法不一样
+                     */
+                    long min = sourceIndexPath.row;
+                    long max = indexPath.row;
+                    if (min>max) {
+                        for (long i = min; i>max; i--) {
+                            [self.rssClassArr exchangeObjectAtIndex:i withObjectAtIndex:i-1];
+                        }
+                    }else{
+                       
+                        for (long i=min; i<max; i++) {
+                            [self.rssClassArr exchangeObjectAtIndex:i withObjectAtIndex:i+1];
+                        }
+                        
                     }
                     
                     // ... and update source so it is in sync with UI changes.
@@ -157,7 +171,8 @@
                     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
                     cell.alpha = 0.0;
                     
-                    
+                    //手指放开后需要重置位置排名到数据库
+                    [self resetRssClassRank];
                 }
                 
             }
@@ -165,8 +180,7 @@
         }
             
         default: {
-            //手指放开后需要重置位置排名到数据库
-            [self resetRssClassRank];
+            
             // Clean up.
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:sourceIndexPath];
             [UIView animateWithDuration:0.25 animations:^{
@@ -218,6 +232,7 @@
     for (int i=0; i<self.rssClassArr.count; i++) {
         RssClassData *classData = [self.rssClassArr objectAtIndex:i];
         classData.rrcrank = [NSString stringWithFormat:@"%d",(i+1)];
+        NSLog(@"%@----%@",classData.rrcName,classData.rrcrank);
         [classData updateSelf];
     }
 }
@@ -530,7 +545,7 @@
     return YES;
 }
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"adfa");
+//    NSLog(@"adfa");
 }
 -(void)viewDidAppear:(BOOL)animated{
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;

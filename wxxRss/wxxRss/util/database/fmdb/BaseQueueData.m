@@ -20,7 +20,7 @@
         
         my_FMDatabaseQueue = [FMDatabaseQueue databaseQueueWithPath:[self getDBPath]];
     }
-    NSLog(@"++++++++++++++++++++++++++++++++++++++:%@",my_FMDatabaseQueue);
+//    NSLog(@"++++++++++++++++++++++++++++++++++++++:%@",my_FMDatabaseQueue);
     return my_FMDatabaseQueue;
 }
 

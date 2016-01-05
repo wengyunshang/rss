@@ -453,7 +453,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -477,7 +477,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -496,7 +496,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -570,7 +570,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
             if (!res) {
                 NSLog(@"failed");
             } else {
-                NSLog(@"success");
+//                NSLog(@"success");
             }
             
             [wxxdb close];
@@ -663,7 +663,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -726,7 +726,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -744,7 +744,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
         if (!res) {
             NSLog(@"failed");
         } else {
-            NSLog(@"success");
+//            NSLog(@"success");
         }
         
         [wxxdb close];
@@ -792,7 +792,7 @@ static PenSoundDao *_sharedPenSoundDao = nil;
             if (!res) {
                 NSLog(@"failed");
             } else {
-                NSLog(@"success");
+//                NSLog(@"success");
             }
             
             [wxxdb close];

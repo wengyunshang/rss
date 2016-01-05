@@ -233,7 +233,7 @@
     }else{
         self.imgV.alpha = 0;
     }
-    NSLog(@"%@",self.rsClassData.rrcImage);
+//    NSLog(@"%@",self.rsClassData.rrcImage);
    [self.tipNumV setText:[[PenSoundDao sharedPenSoundDao]selectNewMessageCountForRcid:self.rsClassData.rrcId time:self.rsClassData.rrctime]];
 }
 
