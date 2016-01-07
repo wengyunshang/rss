@@ -44,18 +44,19 @@
 - (void)setCellView
 {
     self.backgroundColor = WXXCOLOR(0, 0, 0, 1);
-    self.layer.cornerRadius = 1;
+    self.layer.cornerRadius = 3;
+    self.layer.masksToBounds = YES;
 //    self.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:3].CGPath;
 //    self.layer.shadowOffset = CGSizeMake(0, 1);
 //    self.layer.shadowRadius = 1;
 //    self.layer.shadowColor = [UIColor blackColor].CGColor;
 //    self.layer.shadowOpacity = 0.5;
-    self.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
-    self.layer.borderWidth = 0.5;
+//    self.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
+//    self.layer.borderWidth = 0.5;
     
     self.vvv = [[UIView alloc]init];
-    self.vvv.layer.cornerRadius = 1;
-    self.vvv.layer.masksToBounds = YES;
+//    self.vvv.layer.cornerRadius = 3;
+//    self.vvv.layer.masksToBounds = YES;
     [self addSubview:self.vvv];
     self.vvv.backgroundColor = [UIColor clearColor];
     self.vvv.translatesAutoresizingMaskIntoConstraints = NO;
@@ -113,14 +114,17 @@
     self.addBtn = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     self.addBtn.backgroundColor = [UIColor whiteColor];
     [self.vvv addSubview:self.addBtn];
+    self.addBtn.layer.cornerRadius = 3;
     self.addBtn.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
     self.addBtn.layer.borderWidth = 0.5;
     UIView *shuLine = [[UIView alloc]initWithFrame:CGRectMake((self.frame.size.width-10)/2,  (self.frame.size.height-50)/2, 10, 50)];
     shuLine.backgroundColor = WXXCOLOR(0, 0, 0, 1);
+    shuLine.layer.cornerRadius = 2;
     [self.addBtn addSubview:shuLine];
     
     UIView *hengline = [[UIView alloc]initWithFrame:CGRectMake((self.frame.size.width-50)/2,  (self.frame.size.height-10)/2, 50, 10)];
     hengline.backgroundColor = WXXCOLOR(0, 0, 0, 1);
+        hengline.layer.cornerRadius = 2;
     [self.addBtn addSubview:hengline];
     
     
@@ -199,7 +203,7 @@
             if( a > 0x4e00 && a < 0x9fff)
                 sUrl = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)sUrl, nil, nil, kCFStringEncodingUTF8));
         }
-        [self.imgV sd_setImageWithURL:[NSURL URLWithString:sUrl] placeholderImage:[UIImage imageNamed:@"IMG_0978.jpg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.imgV sd_setImageWithURL:[NSURL URLWithString:sUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
         }];
         
@@ -207,8 +211,7 @@
         self.imgV.alpha = 0;
     }
     self.title.text = rssClassData.rrcName;
-    [self.tipNumV setText:[[PenSoundDao sharedPenSoundDao]selectNewMessageCountForRcid:self.rsClassData.rrcId time:self.rsClassData.rrctime]];
-
+    [self refreshTipNumV];
 }
 
 -(void)refreshTipNumV{
@@ -234,7 +237,7 @@
         self.imgV.alpha = 0;
     }
 //    NSLog(@"%@",self.rsClassData.rrcImage);
-   [self.tipNumV setText:[[PenSoundDao sharedPenSoundDao]selectNewMessageCountForRcid:self.rsClassData.rrcId time:self.rsClassData.rrctime]];
+    [self refreshTipNumV];
 }
 
 -(void)startLoading{

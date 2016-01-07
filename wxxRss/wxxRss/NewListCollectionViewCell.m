@@ -47,8 +47,10 @@
 //    self.imgV.layer.cornerRadius = 3;
     self.imgV.layer.masksToBounds = YES;
     self.imgV.backgroundColor = WXXCOLOR(0, 0, 0, 0.3);
-    self.imgV.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
-    self.imgV.layer.borderWidth = 0.5;
+    self.imgV.layer.cornerRadius = 2;
+    self.imgV.layer.masksToBounds = YES;
+//    self.imgV.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
+//    self.imgV.layer.borderWidth = 0.5;
     
     
     //        self.titleLb = [[WxxLabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.imgV.frame)+10, 10, UIBounds.size.width-CGRectGetMaxX(self.imgV.frame)-10-16, 50)

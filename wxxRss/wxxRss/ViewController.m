@@ -13,8 +13,8 @@
 #import "BigClassViewController.h"
 #import "LeftHbgView.h"
 #import "POPSpringAnimation.h"
-#define margin 6
-
+#define marginx 14
+#define marginy 8
 @interface ViewController ()
 @property (nonatomic,strong)NSMutableArray *rssClassArr;
 @property (nonatomic,assign)BOOL ynChange;//是否编辑模式
@@ -36,17 +36,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"新闻";
+//    self.navigationItem.title = @"新闻";
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setBarTintColor:WXXCOLOR(255, 255, 255, 1)];
     self.navigationController.navigationBar.translucent = NO;
         [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
-    self.view.backgroundColor = WXXCOLOR(255, 255, 255, 1);
+    self.view.backgroundColor = WXXCOLOR(242, 242, 242, 1);
 
     self.navigationController.navigationBarHidden = YES;
     self.ynChange = NO;
     
     self.doCell = nil;
+    
+    
     [self initCollectionView];
     [self initTitleBar];
     [self loadInfo];
@@ -306,7 +308,7 @@
         //一小时内刷新过就不用刷新啦
         if ([rssCLassData ynNeedRefresh]) {
             //开始显示加载转圈
-            __block RssCollectionViewCell * cell = (RssCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            __block RssCollectionViewCell * cell = (RssCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:1]];
             //        __block ViewController *blockself = self;
             [cell startLoading];
             
@@ -351,40 +353,59 @@
 
 //标题
 -(void)initTitleBar{
-    UIView *titlV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UIBounds.size.height, 64)];
-    titlV.backgroundColor = WXXCOLOR(255, 255, 255, 1);
-//        titlV.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:titlV.bounds cornerRadius:0].CGPath;
-//        titlV.layer.shadowOffset = CGSizeMake(0, 1);
-//        titlV.layer.shadowRadius = 1;
-//        titlV.layer.shadowColor = [UIColor blackColor].CGColor;
-//        titlV.layer.shadowOpacity = 0.5;
+    UIView *titlV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, UIBounds.size.width, 64)];
+    titlV.backgroundColor = WXXCOLOR(255, 255, 255, 0.9);
     [self.view addSubview:titlV];
+    
     WxxLabel *titlLb = [[WxxLabel alloc]initWithFrame:CGRectMake(0, 30, UIBounds.size.width, 18)
                                                 color:WXXCOLOR(0,0,0, 1)
                                                  font:18];
     titlLb.textAlignment = NSTextAlignmentCenter;
     titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
     titlLb.text = @"新闻阅读";
-//
     [titlV addSubview:titlLb];
     
-    WxxButton *lineBtn = [[WxxButton alloc]initWithFrame:CGRectMake(0, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
-//    lineBtn.layer.borderColor = WXXCOLOR(0, 0, 0, 0.2).CGColor;
-//    lineBtn.layer.borderWidth = 0.5;
-    [titlV addSubview:lineBtn];
-    [lineBtn addTarget:self action:@selector(setView) forControlEvents:UIControlEventTouchUpInside];
-    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(16, 33, 20, 2)];
+    WxxButton *LeftBtn = [[WxxButton alloc]initWithFrame:CGRectMake(0, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
+    [titlV addSubview:LeftBtn];
+    [LeftBtn addTarget:self action:@selector(setView) forControlEvents:UIControlEventTouchUpInside];
+    UIView *line1 = [[UIView alloc]initWithFrame:CGRectMake(16, 34, 18, 2.5)];
     line1.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
-    [lineBtn addSubview:line1];
-    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(16, CGRectGetMaxY(line1.frame)+5, 22, 2)];
+    [LeftBtn addSubview:line1];
+    UIView *line2 = [[UIView alloc]initWithFrame:CGRectMake(16, CGRectGetMaxY(line1.frame)+4.5, 20, 2.5)];
     line2.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
-    [lineBtn addSubview:line2];
-    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(16, CGRectGetMaxY(line2.frame)+5, 20, 2)];
+    [LeftBtn addSubview:line2];
+    UIView *line3 = [[UIView alloc]initWithFrame:CGRectMake(16, CGRectGetMaxY(line2.frame)+4.5, 18, 2.5)];
     line3.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
-    [lineBtn addSubview:line3];
+    [LeftBtn addSubview:line3];
+    line1.layer.cornerRadius = 1;
+    line2.layer.cornerRadius = 1;
+    line3.layer.cornerRadius = 1;
     
+    WxxButton *rightBtn = [[WxxButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(titlV.frame)-64, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
+    [rightBtn addTarget:self action:@selector(presentBigClassVC) forControlEvents:UIControlEventTouchUpInside];
+//    rightBtn.backgroundColor = [UIColor redColor];
+    [titlV addSubview:rightBtn];
     
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, titlV.frame.size.height-0.5, titlV.frame.size.width, 0.5)];
+    float fangwidth = 8;
+    UIView *fang1 = [[UIView alloc]initWithFrame:CGRectMake(64-16-fangwidth*2-2, 33, fangwidth, fangwidth)];
+    fang1.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
+    [rightBtn addSubview:fang1];
+    UIView *fang2 = [[UIView alloc]initWithFrame:CGRectMake(64-16-fangwidth*2-2, 33+fangwidth+2, fangwidth, fangwidth)];
+    fang2.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
+    [rightBtn addSubview:fang2];
+    UIView *fang3 = [[UIView alloc]initWithFrame:CGRectMake(64-16-fangwidth, 33, fangwidth, fangwidth)];
+    fang3.backgroundColor = WXXCOLOR(0, 0, 0, 0.2);
+    [rightBtn addSubview:fang3];
+    UIView *fang4 = [[UIView alloc]initWithFrame:CGRectMake(64-16-fangwidth, 33+fangwidth+2, fangwidth, fangwidth)];
+    fang4.backgroundColor = WXXCOLOR(0, 0, 0, 0.5);
+    [rightBtn addSubview:fang4];
+
+    fang1.layer.cornerRadius = 1;
+    fang2.layer.cornerRadius = 1;
+    fang3.layer.cornerRadius = 1;
+    fang4.layer.cornerRadius = 1;
+//
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, titlV.frame.size.height-0.53, titlV.frame.size.width, 0.5)];
     line.backgroundColor = WXXCOLOR(0, 0, 0, 0.25);
     [titlV addSubview:line];
 //    WxxButton *closeBtn = [[WxxButton alloc]initWithPoint:CGPointMake(16, 20+(44-24)/2) image:@"whitehead" touchSize:20];
@@ -404,7 +425,7 @@
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
         flowLayout.minimumInteritemSpacing = 5;
-        self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 44, UIBounds.size.width, UIBounds.size.height-44) collectionViewLayout:flowLayout];
+        self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, UIBounds.size.width, UIBounds.size.height-0) collectionViewLayout:flowLayout];
         self.collectionView.dataSource=self;
         self.collectionView.delegate=self;
         [self.collectionView setBackgroundColor:[UIColor clearColor]];
@@ -426,7 +447,7 @@
 {
     if(section == 0)
     {
-        CGSize size = {UIBounds.size.width, margin};
+        CGSize size = {UIBounds.size.width, 0};
         return size;
     }
     else
@@ -440,13 +461,17 @@
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.rssClassArr.count+1;
+    if (section==1) {
+        return self.rssClassArr.count+1;
+    }else{
+        return 0;
+    }
 }
 
 //定义展示的Section的个数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 //每个UICollectionView展示的内容
@@ -459,16 +484,16 @@
     //最后一个是加号
     if (indexPath.row==self.rssClassArr.count) {
         [cell setAddbtn];
-        [self doQueueLoadRss];
+//        [self doQueueLoadRss];
     }else{
         RssClassData *rsdata = [self.rssClassArr objectAtIndex:indexPath.row];
         [cell setInfo:rsdata];
     }
-    if (self.ynChange) {
-        [cell showChangeBtn];
-    }else{
-        [cell hideChangeBtn];
-    }
+//    if (self.ynChange) {
+//        [cell showChangeBtn];
+//    }else{
+//        [cell hideChangeBtn];
+//    }
     return cell;
 }
 
@@ -477,19 +502,19 @@
 
 // 定义上下cell的最小间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return margin;
+    return marginy;
 }
 
 //定义每个Item 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((UIBounds.size.width-margin*3)/2, (UIBounds.size.width-4)/2-50);
+    return CGSizeMake((UIBounds.size.width-marginx*3)/2, (UIBounds.size.width-4)/2-55);
 }
 
 //定义每个UICollectionView 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(0, margin,margin, margin);
+    return UIEdgeInsetsMake(0, marginx,marginy, marginx);
 }
 
 #pragma mark --UICollectionViewDelegate
@@ -515,15 +540,7 @@
     //    //临时改变个颜色，看好，只是临时改变的。如果要永久改变，可以先改数据源，然后在cellForItemAtIndexPath中控制。（和UITableView差不多吧！O(∩_∩)O~）
     //    cell.backgroundColor = [UIColor greenColor];
     if (indexPath.row==self.rssClassArr.count) {
-        BigClassViewController *liVC = [[BigClassViewController alloc]init];
-        UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:liVC];
-        [self presentViewController:nv animated:YES completion:^{
-            
-        }];
-                liVC.refreshCallback = ^(){
-                    [self loadInfo];
-                    [self doQueueLoadRss];
-                };
+        [self presentBigClassVC];
         //        [self.navigationController pushViewController:liVC animated:YES];
     }else{
         
@@ -537,6 +554,18 @@
     //    NSLog(@"item======%d",indexPath.item);
     //    NSLog(@"row=======%d",indexPath.row);
     //    NSLog(@"section===%d",indexPath.section);
+}
+
+-(void)presentBigClassVC{
+    BigClassViewController *liVC = [[BigClassViewController alloc]init];
+    UINavigationController *nv = [[UINavigationController alloc]initWithRootViewController:liVC];
+    [self presentViewController:nv animated:YES completion:^{
+        
+    }];
+    liVC.refreshCallback = ^(){
+        [self loadInfo];
+        [self doQueueLoadRss];
+    };
 }
 
 //返回这个UICollectionView是否可以被选择

@@ -61,7 +61,7 @@ typedef enum{
 
 
 //*************url***************************************//
-#define httpurl(str) [NSString stringWithFormat:@"http://huuuaapp.duapp.com/api.php%@",str]
+#define httpurl(str) [NSString stringWithFormat:@"http://www.huuua.com/api.php%@",str]
 #define wxxbaseURL [NSString stringWithFormat:@"%@%@",httpurl,@"index.php"]
 
 
