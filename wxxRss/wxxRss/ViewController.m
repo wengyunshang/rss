@@ -362,7 +362,7 @@
                                                  font:18];
     titlLb.textAlignment = NSTextAlignmentCenter;
     titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    titlLb.text = @"新闻阅读";
+    titlLb.text = @"订阅";
     [titlV addSubview:titlLb];
     
     WxxButton *LeftBtn = [[WxxButton alloc]initWithFrame:CGRectMake(0, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
@@ -564,7 +564,7 @@
     }];
     liVC.refreshCallback = ^(){
         [self loadInfo];
-        [self doQueueLoadRss];
+//        [self doQueueLoadRss];
     };
 }
 

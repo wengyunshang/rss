@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wxxRss/util/wxxUI/WxxNetUTIL.m"
-            timestampString = "473830439.170759"
+            timestampString = "473913608.991049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "-getLittleClass:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wxxRss/util/wxxUI/WxxNetUTIL.m"
-            timestampString = "473830439.64265"
+            timestampString = "473913608.991049"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-getLittleClass:"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,7 +118,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "wxxRss/SMAppDelegate.m"
@@ -160,6 +160,399 @@
             startingLineNumber = "222"
             endingLineNumber = "222"
             landmarkName = "-refreshImageV"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935393.952499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935394.418883"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/NewListCollectionViewCell.m"
+            timestampString = "473935456.090631"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "-setInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935612.562734"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935613.010765"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__88-[UIImageView(WebCache) sd_setImageWithURL:placeholderImage:options:progress:completed:]_block_invoke18"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151042"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__88-[UIImageView(WebCache) sd_setImageWithURL:placeholderImage:options:progress:completed:]_block_invoke_2"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151197"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_21"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151323"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_22"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151452"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__88-[UIImageView(WebCache) sd_setImageWithURL:placeholderImage:options:progress:completed:]_block_invoke24"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.15158"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_25"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151704"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_26"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.151834"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/SDWebImageManager.m"
+            timestampString = "473935700.810773"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-downloadImageWithURL:options:progress:completed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935724.066689"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__88-[UIImageView(WebCache) sd_setImageWithURL:placeholderImage:options:progress:completed:]_block_invoke18"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.156004"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "624">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_28"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.156168"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_29"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.156309"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+            timestampString = "473935724.57853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-sd_setImageWithURL:placeholderImage:options:progress:completed:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__88-[UIImageView(WebCache) sd_setImageWithURL:placeholderImage:options:progress:completed:]_block_invoke18"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.157422"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "624">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_28"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.157567"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_29"
+                  moduleName = "wxxRss"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/xlong/Work/rss/wxxRss/wxxRss/util/SDWebImage/UIImageView+WebCache.m"
+                  timestampString = "473939108.15769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/SDWebImageManager.m"
+            timestampString = "473935786.594853"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "-downloadImageWithURL:options:progress:completed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/SDImageCache.m"
+            timestampString = "473935826.522746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "-queryDiskCacheForKey:done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/util/SDWebImage/SDImageCache.m"
+            timestampString = "473935835.666701"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "-queryDiskCacheForKey:done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "wxxRss/ViewController.m"
+            timestampString = "473939107.938715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "566"
+            endingLineNumber = "566"
+            landmarkName = "-presentBigClassVC"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

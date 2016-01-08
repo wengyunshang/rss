@@ -149,7 +149,8 @@ static WxxNetUTIL *_sharedutil = nil;
 }
 
 -(void)getLittleClass:(WxxNetUTILLoadCallback)callback{
-    [SVHTTPRequest GET:httpurl(@"?c=appapi&a=getLittleClassnewapi")
+//    getLittleClass / getLittleClassnewapi
+    [SVHTTPRequest GET:httpurl(@"?c=appapi&a=getLittleClass")
             parameters:nil
             completion:^(id response, NSHTTPURLResponse *urlResponse, NSError *errors) {
                 NSLog(@"%@",response);

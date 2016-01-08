@@ -344,7 +344,7 @@
     while (flag == false) {
         r = [newHtml rangeOfString:regex options:NSRegularExpressionSearch];
         if (r.location != NSNotFound) {
-            [newHtml replaceCharactersInRange:r withString:@""];
+            [newHtml replaceCharactersInRange:r withString:@"<img src=\"\" alt=\"Smiley face\" height=\"320\" width=\"200\">"];
         } else {
             flag = true;
         }
@@ -360,7 +360,7 @@
     }
     //是否开启3G 下载图片
     if (![WXXNETUTIL isOpen3g]) {
-        
+    
         _showContent = [self replaceImageHtml:_showContent];
     }
     

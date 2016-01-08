@@ -205,6 +205,7 @@ static LeftHbgView *_sharedLeftHbgView = nil;
                              @"zang",@"image",
                              [NSString stringWithFormat:@"%d",setComment],@"leftType",nil]];
     
+    
     BOOL lockedread = [[[NSUserDefaults standardUserDefaults] objectForKey:@"hideread"] boolValue];
     NSString *str = @"隐藏已读";
     if (lockedread) {
@@ -214,6 +215,17 @@ static LeftHbgView *_sharedLeftHbgView = nil;
                              str,@"text",
                              @"Eye-icon",@"image",
                              [NSString stringWithFormat:@"%d",setHideRead],@"leftType",nil]];
+    
+    
+//    BOOL lockedwifi = [[[NSUserDefaults standardUserDefaults] objectForKey:@"hideread"] boolValue];
+//    str = @"Wi-Fi才加载图片";
+//    if (lockedread) {
+//        str = @"显示已读";
+//    }
+//    [self.listArr addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+//                             str,@"text",
+//                             @"Eye-icon",@"image",
+//                             [NSString stringWithFormat:@"%d",setHideRead],@"leftType",nil]];
 }
 
 -(void)inittableView{
