@@ -258,7 +258,13 @@
         return self.rssArr.count;
     }
     if (self.rssArr.count > 0) {
-        return self.rssArr.count+1;
+        //非API新闻不显示加载更多按钮
+        if ([self.rssClassData.rrcynapi isEqualToString:WXXYES]) {
+            return self.rssArr.count+1;
+        }else{
+            return self.rssArr.count;
+        }
+
     }
     return 0;
 }

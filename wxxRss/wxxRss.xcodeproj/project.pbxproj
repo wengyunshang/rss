@@ -240,6 +240,14 @@
 		098906471B21988D00900191 /* bottomSet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 098906441B21988D00900191 /* bottomSet@3x.png */; };
 		0989064A1B219F3800900191 /* NewListLoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 098906491B219F3800900191 /* NewListLoadCell.m */; };
 		09CEC28F1B039A0300CAEF6D /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CEC28E1B039A0300CAEF6D /* YLLabel.m */; };
+		A820036F1C44ECFA00B8FD26 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A820036E1C44ECFA00B8FD26 /* TimelineViewController.m */; };
+		A82003701C44ECFA00B8FD26 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A820036E1C44ECFA00B8FD26 /* TimelineViewController.m */; };
+		A82003781C44F21A00B8FD26 /* NYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003731C44F21A00B8FD26 /* NYSegment.m */; };
+		A82003791C44F21A00B8FD26 /* NYSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003731C44F21A00B8FD26 /* NYSegment.m */; };
+		A820037A1C44F21A00B8FD26 /* NYSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003751C44F21A00B8FD26 /* NYSegmentedControl.m */; };
+		A820037B1C44F21A00B8FD26 /* NYSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003751C44F21A00B8FD26 /* NYSegmentedControl.m */; };
+		A820037C1C44F21A00B8FD26 /* NYSegmentIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003771C44F21A00B8FD26 /* NYSegmentIndicator.m */; };
+		A820037D1C44F21A00B8FD26 /* NYSegmentIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = A82003771C44F21A00B8FD26 /* NYSegmentIndicator.m */; };
 		A8BE78611C35048700A2B0D7 /* libGDTMobSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BE78601C35048700A2B0D7 /* libGDTMobSDK.a */; };
 		A8BE786D1C351EB400A2B0D7 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BE78631C351EB400A2B0D7 /* GoogleMobileAds.framework */; };
 		A8BE786E1C351EB400A2B0D7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8BE786B1C351EB400A2B0D7 /* README.txt */; };
@@ -662,6 +670,14 @@
 		098906491B219F3800900191 /* NewListLoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewListLoadCell.m; sourceTree = "<group>"; };
 		09CEC28D1B039A0300CAEF6D /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		09CEC28E1B039A0300CAEF6D /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
+		A820036D1C44ECFA00B8FD26 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		A820036E1C44ECFA00B8FD26 /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		A82003721C44F21A00B8FD26 /* NYSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegment.h; sourceTree = "<group>"; };
+		A82003731C44F21A00B8FD26 /* NYSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegment.m; sourceTree = "<group>"; };
+		A82003741C44F21A00B8FD26 /* NYSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegmentedControl.h; sourceTree = "<group>"; };
+		A82003751C44F21A00B8FD26 /* NYSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegmentedControl.m; sourceTree = "<group>"; };
+		A82003761C44F21A00B8FD26 /* NYSegmentIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYSegmentIndicator.h; sourceTree = "<group>"; };
+		A82003771C44F21A00B8FD26 /* NYSegmentIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYSegmentIndicator.m; sourceTree = "<group>"; };
 		A8BE785C1C35048700A2B0D7 /* GDTMobBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobBannerView.h; sourceTree = "<group>"; };
 		A8BE785D1C35048700A2B0D7 /* GDTMobInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTMobInterstitial.h; sourceTree = "<group>"; };
 		A8BE785E1C35048700A2B0D7 /* GDTNativeAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDTNativeAd.h; sourceTree = "<group>"; };
@@ -1359,6 +1375,8 @@
 		094807631B02521B00880023 /* index */ = {
 			isa = PBXGroup;
 			children = (
+				A82003711C44F21A00B8FD26 /* NYSegmentedControl */,
+				A820036C1C44ECCD00B8FD26 /* newstimeline */,
 				093DCCA11B0477C100349B37 /* RssCollectionViewCell.h */,
 				093DCCA21B0477C100349B37 /* RssCollectionViewCell.m */,
 				091629971B0057FB000310AF /* ViewController.h */,
@@ -1551,6 +1569,28 @@
 				09CEC28E1B039A0300CAEF6D /* YLLabel.m */,
 			);
 			path = YLLabel;
+			sourceTree = "<group>";
+		};
+		A820036C1C44ECCD00B8FD26 /* newstimeline */ = {
+			isa = PBXGroup;
+			children = (
+				A820036D1C44ECFA00B8FD26 /* TimelineViewController.h */,
+				A820036E1C44ECFA00B8FD26 /* TimelineViewController.m */,
+			);
+			name = newstimeline;
+			sourceTree = "<group>";
+		};
+		A82003711C44F21A00B8FD26 /* NYSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				A82003721C44F21A00B8FD26 /* NYSegment.h */,
+				A82003731C44F21A00B8FD26 /* NYSegment.m */,
+				A82003741C44F21A00B8FD26 /* NYSegmentedControl.h */,
+				A82003751C44F21A00B8FD26 /* NYSegmentedControl.m */,
+				A82003761C44F21A00B8FD26 /* NYSegmentIndicator.h */,
+				A82003771C44F21A00B8FD26 /* NYSegmentIndicator.m */,
+			);
+			path = NYSegmentedControl;
 			sourceTree = "<group>";
 		};
 		A8BE785B1C35048700A2B0D7 /* gdt */ = {
@@ -1779,6 +1819,7 @@
 				091629991B0057FB000310AF /* ViewController.m in Sources */,
 				097F8B921B0783DD0012FF9C /* SecurityUtil.m in Sources */,
 				09162C161B01D035000310AF /* SDWebImageDecoder.m in Sources */,
+				A82003781C44F21A00B8FD26 /* NYSegment.m in Sources */,
 				09162C081B01D035000310AF /* POPGeometry.mm in Sources */,
 				09162C2E1B01D035000310AF /* WxxTimeUtil.m in Sources */,
 				093DCCCB1B04C32C00349B37 /* NewListCollectionViewCell.m in Sources */,
@@ -1808,6 +1849,7 @@
 				09162C191B01D035000310AF /* SDWebImageManager.m in Sources */,
 				093DCCC81B04B9FC00349B37 /* WxxDoAnyThing.m in Sources */,
 				09162ABE1B006774000310AF /* AFHTTPSessionManager.m in Sources */,
+				A820037A1C44F21A00B8FD26 /* NYSegmentedControl.m in Sources */,
 				09162C251B01D035000310AF /* NSString+wxx.m in Sources */,
 				09162C3A1B020EC5000310AF /* RssClassData.m in Sources */,
 				09162C281B01D035000310AF /* WxxBaseViewController.m in Sources */,
@@ -1823,6 +1865,7 @@
 				09162ACD1B006774000310AF /* UIRefreshControl+AFNetworking.m in Sources */,
 				09162C181B01D035000310AF /* SDWebImageDownloaderOperation.m in Sources */,
 				09162C051B01D035000310AF /* POPCGUtils.mm in Sources */,
+				A820037C1C44F21A00B8FD26 /* NYSegmentIndicator.m in Sources */,
 				094807661B02525400880023 /* NewListViewController.m in Sources */,
 				09162C131B01D035000310AF /* NSData+ImageContentType.m in Sources */,
 				09162C221B01D035000310AF /* SVHTTPClient.m in Sources */,
@@ -1882,6 +1925,7 @@
 				09162B381B01CB8E000310AF /* TBXML.m in Sources */,
 				09162B371B01CB8E000310AF /* TBXML+HTTP.m in Sources */,
 				09162BEF1B01D035000310AF /* FMDatabaseAdditions.m in Sources */,
+				A820036F1C44ECFA00B8FD26 /* TimelineViewController.m in Sources */,
 				09162C211B01D035000310AF /* UIView+WebCacheOperation.m in Sources */,
 				097F8B8F1B0783DD0012FF9C /* GTMBase64.m in Sources */,
 				097F8B9B1B078AA50012FF9C /* LeftHbgView.m in Sources */,
@@ -1904,7 +1948,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82003791C44F21A00B8FD26 /* NYSegment.m in Sources */,
+				A820037D1C44F21A00B8FD26 /* NYSegmentIndicator.m in Sources */,
 				091629AD1B0057FB000310AF /* wxxRssTests.m in Sources */,
+				A82003701C44ECFA00B8FD26 /* TimelineViewController.m in Sources */,
+				A820037B1C44F21A00B8FD26 /* NYSegmentedControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2132,7 +2180,7 @@
 					"-lstdc++",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c2982133-377a-4ba6-803d-f4c0677cbdc5";
+				PROVISIONING_PROFILE = "279fb16a-1b15-4c9d-afae-61c6ca884634";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

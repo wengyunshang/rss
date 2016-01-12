@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface ViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
+#import "TimelineViewController.h"
+#import "NYSegmentedControl.h"
+@interface ViewController : UIViewController<NYSegmentedControlDelegate,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>{
     
 }
+@property (strong, nonatomic)NYSegmentedControl *foursquareSegmentedControl;
 @property (strong, nonatomic)UICollectionView *collectionView;
+@property (strong, nonatomic)TimelineViewController *timelineVC;
+@property (strong, nonatomic) UIScrollView *scrollView;
 -(void)loadInfo;
 -(void)deleteCell;
 -(void)doQueueLoadRss;

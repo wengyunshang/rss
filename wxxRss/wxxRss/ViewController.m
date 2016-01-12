@@ -13,6 +13,7 @@
 #import "BigClassViewController.h"
 #import "LeftHbgView.h"
 #import "POPSpringAnimation.h"
+
 #define marginx 14
 #define marginy 8
 @interface ViewController ()
@@ -36,20 +37,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationItem.title = @"新闻";
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBarTintColor:WXXCOLOR(255, 255, 255, 1)];
-    self.navigationController.navigationBar.translucent = NO;
-        [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
     self.view.backgroundColor = WXXCOLOR(242, 242, 242, 1);
-
+    if ([[UIDevice currentDevice] systemVersion].floatValue>=7.0) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     self.navigationController.navigationBarHidden = YES;
     self.ynChange = NO;
     
     self.doCell = nil;
     
-    
-    [self initCollectionView];
+    [self initScrollview];
+//    [self initCollectionView];
     [self initTitleBar];
     [self loadInfo];
     
@@ -61,6 +60,58 @@
 
 -(void)loadView{
     [super loadView];
+}
+
+-(void)initScrollview{
+    NSInteger pages = 2;
+    if (!_scrollView) {
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        self.scrollView.showsHorizontalScrollIndicator = NO;
+        self.scrollView.delegate = self;
+        self.scrollView.contentOffset = CGPointMake(0, 0);
+        self.scrollView.pagingEnabled = YES;
+        [self.view addSubview:self.scrollView];
+        [self createPages:pages];
+    }
+}
+
+- (void)createPages:(NSInteger)pages {
+    for (int i = 0; i < pages; i++) {
+        if (i==1) {
+            
+            if (!self.timelineVC) {
+                self.timelineVC = [[TimelineViewController alloc]init];
+                //            self.setVC.view.backgroundColor = [UIColor redColor];
+                [self.scrollView addSubview:self.timelineVC.view];
+                self.timelineVC.view.frame = CGRectMake(CGRectGetWidth(self.scrollView.bounds) * i, 0, self.view.frame.size.width, self.view.frame.size.height);
+                
+            }
+            
+        }else if (i==0){
+            if (!self.collectionView) {
+                //确定是水平滚动，还是垂直滚动
+                UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+                [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+                flowLayout.minimumInteritemSpacing = 5;
+                self.collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, UIBounds.size.width, UIBounds.size.height-0) collectionViewLayout:flowLayout];
+                self.collectionView.dataSource=self;
+                self.collectionView.delegate=self;
+                [self.collectionView setBackgroundColor:[UIColor clearColor]];
+                
+                //注册Cell，必须要有
+                [self.collectionView registerClass:[RssCollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCell"];
+                self.collectionView.alwaysBounceVertical = YES;
+                [self.scrollView addSubview:self.collectionView];
+                
+                ////    self.collectionView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0);
+                //    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, UIBounds.size.width-20, 150)];
+                //    headView.backgroundColor = [UIColor whiteColor];
+                //    [self.collectionView addSubview: headView];
+            }
+        }else{
+        }
+    }
+    [self.scrollView setContentSize:CGSizeMake(CGRectGetWidth(self.scrollView.bounds) * pages,0)];
 }
 
 /**
@@ -365,6 +416,27 @@
     titlLb.text = @"订阅";
     [titlV addSubview:titlLb];
     
+    
+    float rgb = 222.0/255.0;
+    self.foursquareSegmentedControl = [[NYSegmentedControl alloc] initWithItems:@[@"订阅", @"发现"]];
+    self.foursquareSegmentedControl.titleTextColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
+    self.foursquareSegmentedControl.selectedTitleTextColor = [UIColor whiteColor];
+    self.foursquareSegmentedControl.delegate = self;
+    self.foursquareSegmentedControl.selectedTitleFont = [UIFont systemFontOfSize:13.0f];
+    self.foursquareSegmentedControl.segmentIndicatorBackgroundColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
+    self.foursquareSegmentedControl.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1];//[UIColor colorWithRed:0.31f green:0.53f blue:0.72f alpha:1.0f];
+    self.foursquareSegmentedControl.borderWidth = 0.0f;
+    self.foursquareSegmentedControl.segmentIndicatorBorderWidth = 0.0f;
+    self.foursquareSegmentedControl.segmentIndicatorInset = 1.0f;
+    self.foursquareSegmentedControl.segmentIndicatorBorderColor = self.view.backgroundColor;
+    [self.foursquareSegmentedControl sizeToFit];
+    self.foursquareSegmentedControl.cornerRadius = CGRectGetHeight(self.foursquareSegmentedControl.frame) / 2.0f;
+    self.foursquareSegmentedControl.center = CGPointMake(titlV.center.x, titlV.center.y+10);
+//    foursquareSegmentedControlBackgroundView.center = foursquareSegmentedControl.center;
+    [titlV addSubview:self.foursquareSegmentedControl];
+//    [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(_scrollView.frame), 0) animated:YES];setSelectedSegmentIndex
+
+    //***********左边按钮**********//
     WxxButton *LeftBtn = [[WxxButton alloc]initWithFrame:CGRectMake(0, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
     [titlV addSubview:LeftBtn];
     [LeftBtn addTarget:self action:@selector(setView) forControlEvents:UIControlEventTouchUpInside];
@@ -381,6 +453,7 @@
     line2.layer.cornerRadius = 1;
     line3.layer.cornerRadius = 1;
     
+    //***********右边按钮**********//
     WxxButton *rightBtn = [[WxxButton alloc]initWithFrame:CGRectMake(CGRectGetWidth(titlV.frame)-64, 0, 64, 64) title:@"" textColor:WXXCOLOR(0, 0, 0, 0) font:1 touchSize:0];
     [rightBtn addTarget:self action:@selector(presentBigClassVC) forControlEvents:UIControlEventTouchUpInside];
 //    rightBtn.backgroundColor = [UIColor redColor];
@@ -405,6 +478,8 @@
     fang3.layer.cornerRadius = 1;
     fang4.layer.cornerRadius = 1;
 //
+    
+    //分割线
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, titlV.frame.size.height-0.53, titlV.frame.size.width, 0.5)];
     line.backgroundColor = WXXCOLOR(0, 0, 0, 0.25);
     [titlV addSubview:line];
@@ -412,6 +487,44 @@
 //    [titlV addSubview:closeBtn];
 //    //    closeBtn.backgroundColor = [UIColor blackColor];
 //    [closeBtn addTarget:self action:@selector(setView) forControlEvents:UIControlEventTouchUpInside];
+}
+
+#pragma mark delegate
+-(void)NYSegmentedFromSelectedItem:(long)item{
+    
+    NSLog(@"选中:%ld",item);
+    if (item==0) {
+        [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    }else{
+        [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(_scrollView.frame), 0) animated:YES];
+    }
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self pageAnimation];
+    
+    //    [self.nibPageControl setCurrentPage:page];
+}
+
+-(void)pageAnimation{
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    NSInteger page =  floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    //    NSLog(@"%d",page);
+    //    NSLog(@"111111111111111111111");
+    switch (page) {
+        case 0:
+            [self.foursquareSegmentedControl setSelectedSegmentIndex:0 animated:YES];
+            break;
+        case 1:
+            [self.foursquareSegmentedControl setSelectedSegmentIndex:1 animated:YES];
+            break;
+        case 2:
+            
+            break;
+        default:
+            break;
+    }
 }
 
 -(void)setView{
@@ -452,7 +565,7 @@
     }
     else
     {
-        CGSize size = {UIBounds.size.width, 50};
+        CGSize size = {UIBounds.size.width, 70};
         return size;
     }
 }

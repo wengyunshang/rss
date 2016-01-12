@@ -25,7 +25,7 @@ typedef enum{
     setFontFamilySong,
     setHelveticaNeueThin,
 }setType;
-
+//已经定义的常量不可以修改
 #define tabHeight 100
 #define HEADRUL @"headurl"
 #define WXXYES @"1"
