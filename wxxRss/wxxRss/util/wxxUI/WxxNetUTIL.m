@@ -125,6 +125,46 @@ static WxxNetUTIL *_sharedutil = nil;
             }];
 }
 
+
+-(void)getTimelineNewForLastTimecallback:(WxxNetUTILLoadCallback)callback{
+    
+    //根据类别id  和 最后更新的时间获取最新数据
+    NSString *lasttime = @"0";// [[PenSoundDao sharedPenSoundDao]selectRssLastTime4ClassId:rssclassData.rrcId];
+    [SVHTTPRequest POST:httpurl(@"?c=newsapi&a=gettimelinenewlist4time")
+             parameters:[NSDictionary dictionaryWithObjectsAndKeys:
+                         lasttime,@"time",
+                         nil]
+             completion:^(id response, NSHTTPURLResponse *urlResponse, NSError *errors) {
+                 NSLog(@"%@",response);
+                 NSArray *arr = response;
+                 
+                 if (arr.count>0) {
+                     
+                     for (int i=0; i<arr.count; i++) {
+                         RssData *rss = [[RssData alloc]init];
+                         NSDictionary *dic = [arr objectAtIndex:i];
+                         rss.rrtitle = [dic objectForKey:@"title"];
+                         rss.rrid = [dic objectForKey:@"id"];
+                         rss.rrauthor = [dic objectForKey:@"author"];
+                         rss.rrcontent = [dic objectForKey:@"description"];
+                         rss.rrlink = [dic objectForKey:@"link"];
+                         rss.rrpublished = [dic objectForKey:@"pubdate"];
+//                         rss.rrclassid = rssclassData.rrcId;
+                         //            rss.rrsummary = [TBXML textForElement:summary];
+                         rss.rrupdated = [WxxTimeUtil getNowTimeInterval];
+                         rss.rrimage = [[WxxNetTBXMLUtil shared]getImage:rss.rrcontent];//[dic objectForKey:@""];
+                         
+                         [rss saveSelfToDB];
+                     }
+                     
+                 }
+                 if (callback) {
+                     callback(@"");
+                 }
+             }];
+}
+
+
 -(void)getBigClass:(WxxNetUTILLoadCallback)callback{
     [SVHTTPRequest GET:httpurl(@"?c=appapi&a=getBigClass")
             parameters:nil

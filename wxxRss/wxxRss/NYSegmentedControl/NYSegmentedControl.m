@@ -68,9 +68,9 @@
 
 - (void)initialize {
     // We need to directly access the ivars for UIAppearance properties in the initializer
-    _titleFont = [UIFont systemFontOfSize:13.0f];
+    _titleFont = [UIFont systemFontOfSize:15.0f];
     _titleTextColor = [UIColor blackColor];
-    _selectedTitleFont = [UIFont boldSystemFontOfSize:13.0f];
+    _selectedTitleFont = [UIFont boldSystemFontOfSize:15.0f];
     _selectedTitleTextColor = [UIColor blackColor];
     _stylesTitleForSelectedSegment = YES;
     _segmentIndicatorInset = 0.0f;

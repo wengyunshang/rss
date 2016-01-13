@@ -135,6 +135,46 @@ static PenSoundDao *_sharedPenSoundDao = nil;
 }
 
 
+
+-(NSMutableArray*)selectTimeLineRssList{
+    FMDatabaseQueue * queue = [BaseQueueData getSharedInstance];
+    __block NSMutableArray *infoArr = [[NSMutableArray alloc]init];
+    [queue inDatabase:^(FMDatabase *wxxdb) {
+        [wxxdb open];
+        BOOL lockedread = [[[NSUserDefaults standardUserDefaults] objectForKey:@"hideread"] boolValue];
+        NSString *sql = [NSString stringWithFormat:@"select * from %@ order by published desc LIMIT 0,10",rssdata];
+        if (lockedread) {
+            sql = [NSString stringWithFormat:@"select * from %@ where ynread = 0 order by published desc LIMIT 0,10",rssdata];
+        }
+        
+        
+        FMResultSet *rs = [wxxdb executeQuery:sql];
+        while ([rs next]) {
+            RssData *dbData = [[RssData alloc]init];
+            
+            dbData.rrauthor  = [rs stringForColumn:rauthor];
+            dbData.rrclassid = [rs stringForColumn:rclassid];
+            dbData.rrcontent = DECODEBase64String([rs stringForColumn:rcontent]);
+            dbData.rrid      = [rs stringForColumn:rid];
+            dbData.rrlink    = [rs stringForColumn:rlink];
+            dbData.rrpublished = [WxxTimeUtil getTimeForTimeintercal:[rs stringForColumn:rpublished]];
+            dbData.rrread    = [rs stringForColumn:rread];
+            dbData.rrsummary = [rs stringForColumn:rsummary];
+            dbData.rrtitle   = [rs stringForColumn:rtitle];
+            dbData.rrupdated = [rs stringForColumn:rupdated];
+            dbData.rrimage   = [rs stringForColumn:rimage];
+            dbData.rrynread  = [rs stringForColumn:rynread];
+            dbData.rryncollect = [rs stringForColumn:ryncollect];
+            [infoArr addObject:dbData];
+            
+        }
+        
+        [wxxdb close];
+    }];
+    return infoArr;
+}
+
+
 //获取全部类别， 选中和未选中的
 -(NSMutableArray*)selectBigClassList{
     

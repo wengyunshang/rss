@@ -18,6 +18,7 @@
 + (PenSoundDao *)sharedPenSoundDao;
 -(void)saveRssClass:(RssClassData*)rsdata;
 -(void)saveRss:(RssData*)rsdata;//保存一条新闻
+-(NSMutableArray*)selectTimeLineRssList;
 -(NSMutableArray*)selectRssClassList;
 -(NSMutableArray*)selectRssList:(NSString*)classId;
 -(NSString*)selectRssCount4class:(NSString *)classid;

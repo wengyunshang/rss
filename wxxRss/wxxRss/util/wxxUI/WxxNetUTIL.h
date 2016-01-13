@@ -16,6 +16,7 @@ typedef void (^WxxNetUTILLoadCallback)(id response);
 -(void)getBigClass:(WxxNetUTILLoadCallback)callback;
 -(void)getLittleClass:(WxxNetUTILLoadCallback)callback;
 -(void)getNewForClassId:(RssClassData*)rssclassData  callback:(WxxNetUTILLoadCallback)callback;
+-(void)getTimelineNewForLastTimecallback:(WxxNetUTILLoadCallback)callback;
 -(void)getBeforNewForClassId:(RssClassData*)rssclassData rssdata:(RssData *)rssdate  callback:(WxxNetUTILLoadCallback)callback;
 -(BOOL)isOpen3g;
 @end

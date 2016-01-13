@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimelineViewController : UIViewController
-
+@interface TimelineViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (strong, nonatomic)UICollectionView *collectionView;
+-(void)reloadInfo;
 @end

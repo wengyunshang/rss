@@ -408,23 +408,22 @@
     titlV.backgroundColor = WXXCOLOR(255, 255, 255, 0.9);
     [self.view addSubview:titlV];
     
-    WxxLabel *titlLb = [[WxxLabel alloc]initWithFrame:CGRectMake(0, 30, UIBounds.size.width, 18)
-                                                color:WXXCOLOR(0,0,0, 1)
-                                                 font:18];
-    titlLb.textAlignment = NSTextAlignmentCenter;
-    titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-    titlLb.text = @"订阅";
-    [titlV addSubview:titlLb];
+//    WxxLabel *titlLb = [[WxxLabel alloc]initWithFrame:CGRectMake(0, 30, UIBounds.size.width, 18)
+//                                                color:WXXCOLOR(0,0,0, 1)
+//                                                 font:18];
+//    titlLb.textAlignment = NSTextAlignmentCenter;
+//    titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+//    titlLb.text = @"订阅";
+//    [titlV addSubview:titlLb];
     
     
-    float rgb = 222.0/255.0;
     self.foursquareSegmentedControl = [[NYSegmentedControl alloc] initWithItems:@[@"订阅", @"发现"]];
-    self.foursquareSegmentedControl.titleTextColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
+    self.foursquareSegmentedControl.titleTextColor = WXXCOLOR(155, 155, 155, 1);
     self.foursquareSegmentedControl.selectedTitleTextColor = [UIColor whiteColor];
     self.foursquareSegmentedControl.delegate = self;
-    self.foursquareSegmentedControl.selectedTitleFont = [UIFont systemFontOfSize:13.0f];
+    self.foursquareSegmentedControl.selectedTitleFont = [UIFont systemFontOfSize:15.0f];
     self.foursquareSegmentedControl.segmentIndicatorBackgroundColor = [UIColor colorWithRed:0.38f green:0.68f blue:0.93f alpha:1.0f];
-    self.foursquareSegmentedControl.backgroundColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1];//[UIColor colorWithRed:0.31f green:0.53f blue:0.72f alpha:1.0f];
+    self.foursquareSegmentedControl.backgroundColor = WXXCOLOR(222, 222, 222, 1);//[UIColor colorWithRed:0.31f green:0.53f blue:0.72f alpha:1.0f];
     self.foursquareSegmentedControl.borderWidth = 0.0f;
     self.foursquareSegmentedControl.segmentIndicatorBorderWidth = 0.0f;
     self.foursquareSegmentedControl.segmentIndicatorInset = 1.0f;
@@ -517,6 +516,7 @@
             [self.foursquareSegmentedControl setSelectedSegmentIndex:0 animated:YES];
             break;
         case 1:
+            [self.timelineVC reloadInfo];
             [self.foursquareSegmentedControl setSelectedSegmentIndex:1 animated:YES];
             break;
         case 2:

@@ -252,6 +252,8 @@
 		A8BE786D1C351EB400A2B0D7 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BE78631C351EB400A2B0D7 /* GoogleMobileAds.framework */; };
 		A8BE786E1C351EB400A2B0D7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8BE786B1C351EB400A2B0D7 /* README.txt */; };
 		A8BE786F1C351EB400A2B0D7 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = A8BE786C1C351EB400A2B0D7 /* README.txt */; };
+		A8D924421C46309D00714E5D /* TimelineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D924411C46309D00714E5D /* TimelineCell.m */; };
+		A8D924451C4633CD00714E5D /* TimelineLoadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A8D924441C4633CD00714E5D /* TimelineLoadCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -692,6 +694,10 @@
 		A8BE786A1C351EB400A2B0D7 /* GADMRewardBasedVideoAdNetworkConnectorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADMRewardBasedVideoAdNetworkConnectorProtocol.h; sourceTree = "<group>"; };
 		A8BE786B1C351EB400A2B0D7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		A8BE786C1C351EB400A2B0D7 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		A8D924401C46309D00714E5D /* TimelineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineCell.h; sourceTree = "<group>"; };
+		A8D924411C46309D00714E5D /* TimelineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineCell.m; sourceTree = "<group>"; };
+		A8D924431C4633CD00714E5D /* TimelineLoadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineLoadCell.h; sourceTree = "<group>"; };
+		A8D924441C4633CD00714E5D /* TimelineLoadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineLoadCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1576,6 +1582,10 @@
 			children = (
 				A820036D1C44ECFA00B8FD26 /* TimelineViewController.h */,
 				A820036E1C44ECFA00B8FD26 /* TimelineViewController.m */,
+				A8D924401C46309D00714E5D /* TimelineCell.h */,
+				A8D924411C46309D00714E5D /* TimelineCell.m */,
+				A8D924431C4633CD00714E5D /* TimelineLoadCell.h */,
+				A8D924441C4633CD00714E5D /* TimelineLoadCell.m */,
 			);
 			name = newstimeline;
 			sourceTree = "<group>";
@@ -1823,6 +1833,7 @@
 				09162C081B01D035000310AF /* POPGeometry.mm in Sources */,
 				09162C2E1B01D035000310AF /* WxxTimeUtil.m in Sources */,
 				093DCCCB1B04C32C00349B37 /* NewListCollectionViewCell.m in Sources */,
+				A8D924451C4633CD00714E5D /* TimelineLoadCell.m in Sources */,
 				0915A7181B0DDFF200346360 /* AddRssView.m in Sources */,
 				09162AC81B006774000310AF /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				09162C2A1B01D035000310AF /* WxxLabel.m in Sources */,
@@ -1884,6 +1895,7 @@
 				09162AD71B006774000310AF /* NSString+HTML.m in Sources */,
 				09162AC61B006774000310AF /* README.md in Sources */,
 				097F8BA81B0A019D0012FF9C /* AddCollectionViewCell.m in Sources */,
+				A8D924421C46309D00714E5D /* TimelineCell.m in Sources */,
 				09162BF71B01D035000310AF /* EvLineProgressView.m in Sources */,
 				09162AC71B006774000310AF /* AFNetworkActivityIndicatorManager.m in Sources */,
 				09162AFF1B00802B000310AF /* SMDetailViewController.m in Sources */,
