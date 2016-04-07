@@ -63,7 +63,7 @@
 }
 
 -(void)initScrollview{
-    NSInteger pages = 2;
+    NSInteger pages = 1;
     if (!_scrollView) {
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -408,13 +408,13 @@
     titlV.backgroundColor = WXXCOLOR(255, 255, 255, 0.9);
     [self.view addSubview:titlV];
     
-//    WxxLabel *titlLb = [[WxxLabel alloc]initWithFrame:CGRectMake(0, 30, UIBounds.size.width, 18)
-//                                                color:WXXCOLOR(0,0,0, 1)
-//                                                 font:18];
-//    titlLb.textAlignment = NSTextAlignmentCenter;
-//    titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
-//    titlLb.text = @"订阅";
-//    [titlV addSubview:titlLb];
+    WxxLabel *titlLb = [[WxxLabel alloc]initWithFrame:CGRectMake(0, 30, UIBounds.size.width, 18)
+                                                color:WXXCOLOR(0,0,0, 1)
+                                                 font:18];
+    titlLb.textAlignment = NSTextAlignmentCenter;
+    titlLb.font = [UIFont fontWithName:@"HelveticaNeue-Bold" size:18];
+    titlLb.text = @"订阅";
+    [titlV addSubview:titlLb];
     
     
     self.foursquareSegmentedControl = [[NYSegmentedControl alloc] initWithItems:@[@"订阅", @"发现"]];
@@ -433,6 +433,7 @@
     self.foursquareSegmentedControl.center = CGPointMake(titlV.center.x, titlV.center.y+10);
 //    foursquareSegmentedControlBackgroundView.center = foursquareSegmentedControl.center;
     [titlV addSubview:self.foursquareSegmentedControl];
+    self.foursquareSegmentedControl.hidden = YES;
 //    [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(_scrollView.frame), 0) animated:YES];setSelectedSegmentIndex
 
     //***********左边按钮**********//

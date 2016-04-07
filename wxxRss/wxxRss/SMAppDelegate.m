@@ -79,6 +79,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+//    [self createAndLoadInterstitial];
     //    [self fonename];
     //    [self umengTrack];
     [self sharesdk];
@@ -118,7 +120,7 @@
 //        [splashAd loadAdAndShowInWindow:self.window];
 //        self.splash = splashAd;
 //    }
-    //    [self createAndLoadInterstitial];
+    
     
     return YES;
 }
@@ -179,6 +181,9 @@ didFailToReceiveAdWithError:(GADRequestError *)error {
             break;
         case setWebView:
             [self showWebView];
+            break;
+        case setAds:
+            [self createAndLoadInterstitial];
             break;
         default:
             break;

@@ -15,6 +15,7 @@ typedef enum{
     setCollect,
     setWebView,
     setHideRead,
+    setAds,
 }leftType;
 
 @interface LeftHbgView : UIView<UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate,UIActionSheetDelegate>

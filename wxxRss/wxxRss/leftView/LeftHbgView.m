@@ -215,7 +215,10 @@ static LeftHbgView *_sharedLeftHbgView = nil;
                              str,@"text",
                              @"Eye-icon",@"image",
                              [NSString stringWithFormat:@"%d",setHideRead],@"leftType",nil]];
-    
+    [self.listArr addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                            @"广而告之",@"text",
+                            @"Eye-icon",@"image",
+                             [NSString stringWithFormat:@"%d",setAds],@"leftType",nil]];
     
 //    BOOL lockedwifi = [[[NSUserDefaults standardUserDefaults] objectForKey:@"hideread"] boolValue];
 //    str = @"Wi-Fi才加载图片";
@@ -461,6 +464,9 @@ static LeftHbgView *_sharedLeftHbgView = nil;
                 break;
             case setReStore:
                 [self restore];
+                break;
+            case setAds:
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"showSetType" object:[NSString stringWithFormat:@"%d",setAds]];
                 break;
             default:
                 break;
